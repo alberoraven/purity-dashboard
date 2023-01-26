@@ -45,8 +45,7 @@ jobs:
       - name: "Upload artifacts"
         uses: actions/upload-artifact@v2
         with:
-          name: activityplayer
-          path: /home/runner/work/purity-dashboard/purity-dashboard/dist
+          path: './dist'
 #       - name: Upload artifact
 #         uses: actions/upload-pages-artifact@v1
 #         with:
