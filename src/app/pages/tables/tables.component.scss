@@ -1,0 +1,19 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+.table-responsive{
+    padding: 0rem 2rem 2rem 2rem;
+    th, td{
+        padding: 1.3rem;
+    }
+}
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
+  font-size: medium;
+}

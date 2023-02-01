@@ -1,6 +1,6 @@
 {
-  "name": "argon-dashboard-angular",
-  "version": "1.5.0",
+  "name": "purity-smart-services",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@nhost/nhost-js": "1.7.0",
     "@angular/animations": "^14.2.0",
     "@angular/cdk": "^14.2.0",
     "@angular/common": "^14.2.0",
@@ -27,15 +28,17 @@
     "@angular/router": "^14.2.0",
     "@ng-bootstrap/ng-bootstrap": "12.0.1",
     "@popperjs/core": "^2.11.4",
+    "apollo-angular": "^4.2.0",
     "bootstrap": "4.6.1",
     "chart.js": "2.9.4",
     "clipboard": "2.0.10",
+    "graphql": "^16.6.0",
     "ngx-clipboard": "15.0.1",
     "ngx-toastr": "14.2.2",
     "nouislider": "15.5.1",
     "rxjs": "~7.5.0",
-    "zone.js": "~0.11.4",
-    "web-animations-js": "2.3.2"
+    "web-animations-js": "2.3.2",
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.7",

@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (localStorage.getItem("isLogin")) {
+    if (sessionStorage.getItem("isLogin")) {
       this.router.navigateByUrl('/dashboard');
     }
   }
@@ -37,12 +37,14 @@ export class LoginComponent implements OnInit {
         } else {
           res.session.user.roles.forEach((roles: any) => {
             if (roles === "admin") {
-              localStorage.setItem("isLogin", "true");
+              sessionStorage.setItem("isLogin", "true");
+              sessionStorage.setItem("name", res.session.user.displayName);
+              sessionStorage.setItem("avatar", res.session.user.avatarUrl)
               this.router.navigateByUrl('/dashboard');
             } else {
               this.elRef.nativeElement.querySelector(".error").innerHTML = "UnAuthorised User";
               return nhost.auth.signOut().then(() => {
-                localStorage.setItem("isLogin", "false");
+                sessionStorage.setItem("isLogin", "false");
               })
             }
           })
