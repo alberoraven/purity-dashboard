@@ -20,9 +20,14 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (sessionStorage.getItem("isLogin")) {
-      this.router.navigateByUrl('/dashboard');
-    }
+    setTimeout(() => {
+      if (nhost.auth.getUser() && nhost.auth.getUser().roles.includes("admin")) {
+        this.storeValuetoStorage(nhost.auth.getUser())
+        this.router.navigateByUrl('/dashboard');
+      } else {
+        this.ngOnInit();
+      }
+    }, 500);
   }
 
   async onLogin(form: NgForm) {
@@ -35,21 +40,22 @@ export class LoginComponent implements OnInit {
         if (res.error) {
           this.elRef.nativeElement.querySelector(".error").innerHTML = res.error.message + "!";
         } else {
-          res.session.user.roles.forEach((roles: any) => {
-            if (roles === "admin") {
-              sessionStorage.setItem("isLogin", "true");
-              sessionStorage.setItem("name", res.session.user.displayName);
-              sessionStorage.setItem("avatar", res.session.user.avatarUrl)
-              this.router.navigateByUrl('/dashboard');
-            } else {
-              this.elRef.nativeElement.querySelector(".error").innerHTML = "UnAuthorised User";
-              return nhost.auth.signOut().then(() => {
-                sessionStorage.setItem("isLogin", "false");
-              })
-            }
-          })
+          if (res.session.user.roles.includes("admin")) {
+            this.storeValuetoStorage(res.session.user)
+            this.router.navigateByUrl('/dashboard');
+          } else {
+            this.elRef.nativeElement.querySelector(".error").innerHTML = "UnAuthorised User";
+            return nhost.auth.signOut().then(() => {
+              sessionStorage.setItem("isLogin", "false");
+            })
+          }
         }
       })
     }
+  }
+  storeValuetoStorage(res) {
+    sessionStorage.setItem("isLogin", "true");
+    sessionStorage.setItem("name", res.displayName);
+    sessionStorage.setItem("avatar", res.avatarUrl);
   }
 }
