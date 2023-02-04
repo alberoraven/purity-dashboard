@@ -17,6 +17,7 @@ import { ComponentsModule } from './components/components.module';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -30,13 +31,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatSortModule,
     MatTableModule,
     MatFormFieldModule,
+    MatDialogModule,
     NgbModule,
     RouterModule,
     AppRoutingModule
   ],
   exports: [
     MatFormFieldModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   declarations: [
     AppComponent,
