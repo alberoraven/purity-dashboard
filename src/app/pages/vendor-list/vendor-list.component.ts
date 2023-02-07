@@ -1,12 +1,17 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import * as Query from '../../@shared/queries';
 import { nhost } from '../../@shared/global';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 export interface DialogData {
-  vendorList: string;
+  vendorList: any;
   name: string;
+  bookingId: any;
 }
 
 @Component({
@@ -15,9 +20,6 @@ export interface DialogData {
   styleUrls: ['./vendor-list.component.scss']
 })
 export class VendorListComponent implements OnInit {
-
-  animal: string;
-  name: string;
 
   public unassignedUser: any;
   public vendorList: any;
@@ -44,13 +46,17 @@ export class VendorListComponent implements OnInit {
   async getVendorList() {
     const { data, error } = await nhost.graphql.request(Query.vendorList)
     if (data) {
-      this.vendorList = [...(data.vendor_profiles)];
+      [...(data.vendor_profiles)].forEach(res => {
+        if (res.is_available) {
+          this.vendorList = [...(data.vendor_profiles)];
+        }
+      })
     }
   }
 
-  openDialog(user_id): void {
+  openDialog(user_id, bookingId): void {
     const dialogRef = this.dialog.open(VendorAddDialogue, {
-      data: { name: user_id, vendorList: this.vendorList },
+      data: { name: user_id, vendorList: this.vendorList, bookingId: bookingId },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -69,9 +75,34 @@ export class VendorAddDialogue {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) { }
   selectedVendor: string;
-  public vendorList
+  myControl = new FormControl('');
+  filteredOptions: Observable<string[]>;
+  emailId;
+  status;
+  bookingId;
 
-  onNoClick(): void {
+  ngOnInit() {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.data?.vendorList.filter(option => option.email.toLowerCase().includes(filterValue));
+  }
+
+  getPosts(emailId) {
+    this.emailId = emailId;
+    this.bookingId = this.data.bookingId
+  }
+  async onNoClick() {
+    const { data, error } = await nhost.graphql.request(Query.UpdateUser(this.bookingId, this.emailId))
+    if (data) {
+      this.status = [data]
+    }
     this.dialogRef.close();
   }
   eventSelection(event) {

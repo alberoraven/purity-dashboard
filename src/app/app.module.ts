@@ -18,12 +18,14 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+    MatAutocompleteModule,
     HttpClientModule,
     ComponentsModule,
     GraphQLModule,
@@ -39,6 +41,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   exports: [
     MatFormFieldModule,
     MatTableModule,
+    MatAutocompleteModule,
     MatDialogModule
   ],
   declarations: [

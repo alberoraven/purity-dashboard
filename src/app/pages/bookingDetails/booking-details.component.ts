@@ -24,7 +24,7 @@ export class BookingDetails implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.displayedColumns = ["name", "phone", "service_detail", "booking_status", "service_date", "booking_date"]
+    this.displayedColumns = ["booking_id", "name", "phone", "service_detail", "booking_status", "service_date", "booking_date"]
     this.createTable();
   }
   createTable() {

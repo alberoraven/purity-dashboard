@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'; import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -13,12 +15,14 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { BookingDetails } from '../../pages/bookingDetails/booking-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatTableModule } from '@angular/material/table';
-import { MaterialExampleModule } from 'src/app/material.module';
+import { MaterialExampleModule } from '../../material.module';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { GraphQLModule } from 'src/app/@shared/graphql.module';
+import { GraphQLModule } from '../../@shared/graphql.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { VendorListTableComponent } from '../../pages/vender-list-table/vender-list-table.component';
+
 
 @NgModule({
   imports: [
@@ -33,6 +37,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTableModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
     GraphQLModule,
     MatPaginatorModule
   ],
@@ -40,9 +46,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     DashboardComponent,
     UserProfileComponent,
     BookingDetails,
+    VendorListTableComponent,
     IconsComponent,
     VendorAddDialogue,
-    VendorListComponent
+    VendorListComponent,
   ], exports: [
     MatFormFieldModule
   ]
