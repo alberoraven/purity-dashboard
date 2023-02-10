@@ -1,0 +1,16 @@
+<div mat-dialog-content>
+    <p>Choose a vendor</p>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Vendor List</mat-label>
+        <input type="text" placeholder="Pick one" aria-label="Vendor List" matInput [formControl]="myControl"
+            [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getPosts($event.option.id)'>
+            <mat-option *ngFor="let list of filteredOptions | async" [id]="list.user_id" [value]="list.email">
+                {{list.email}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Ok</button>
+</div>

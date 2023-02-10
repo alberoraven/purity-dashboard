@@ -1,7 +1,7 @@
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
-  <div class="container-fluid">
+  <!-- <div class="container-fluid">
     <div class="header-body">
-      <!-- Card stats -->
+      Card stats
       <div class="row">
         <div class="col-xl-3 col-lg-6">
           <div class="card card-stats mb-4 mb-xl-0">
@@ -89,15 +89,80 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
-<!-- Page content -->
 <div class="container-fluid mt--7">
   <div class="row">
     <div class="col">
-      <div class="card shadow border-0">
-        <div id="map-canvas" class="map-canvas" data-lat="40.748817" data-lng="-73.985428" style="height: 600px;"></div>
+      <div class="card bg-default shadow">
+        <div class="card-header bg-transparent border-0">
+          <h3 class="text-white mb-0">Vendor List</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-dark table-flush">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Email</th>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Locality</th>
+                <th scope="col">wallet Money</th>
+                <th scope="col">Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of vendorList;">
+                <th scope="row">
+                  <a [routerLink]="['/user-profile']" [queryParams]="{prop: item.user_id}">{{item.email}}</a>
+
+                </th>
+                <td>
+                  {{item.name}}
+                </td>
+                <td>
+                  {{item.city}}
+                </td>
+                <td>
+                  {{item.locality}}
+                </td>
+                <td>
+                  {{item.wallet_money}}
+                </td>
+                <td>
+                  {{item.phone}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+  </div>
+  <div class="col" style="padding-top: 2rem;">
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Add a Vendor
+          </mat-panel-title>
+          <mat-panel-description>
+            Type the Email Id of the vendor to be added
+            <mat-icon>person_add</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="error"></div>
+        <div class="text-success"></div>
+        <form role="form" #emailForm="ngForm" novalidate>
+          <mat-label>Email Id</mat-label>
+          <input class="form-control" matInput [(ngModel)]="vendor.email" type="email" name="Email" #email="ngModel"
+            required>
+        </form>
+
+        <mat-action-row>
+          <button mat-button color="primary" [disabled]="!emailForm.valid" (click)="submit(emailForm)">Submit</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+    </mat-accordion>
   </div>
 </div>
