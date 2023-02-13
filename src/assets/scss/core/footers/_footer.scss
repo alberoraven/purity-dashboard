@@ -68,7 +68,13 @@
         }
     }
 }
-
+.align-items-center{
+    display: flex;
+    justify-content: space-between;
+}
+.col-xl-6 {
+    width: auto;
+}
 
 // Footer with cards over
 

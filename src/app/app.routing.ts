@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { LoginComponent } from './pages/login/login.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'dashboard'
   },
+  { path: "privacy-policy", component: PrivacyPolicyComponent },
   { path: "login", component: LoginComponent }
 ];
 
