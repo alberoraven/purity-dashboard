@@ -17,7 +17,9 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
     if (sessionStorage.getItem("isLogin") == "true") {
       this.islogin = true;
     } else {
-      this.router.navigateByUrl('/login');
+      if (window.location.pathname.indexOf('privacy-policy') < 1) {
+        this.router.navigateByUrl('/login');
+      }
     }
     var html = document.getElementsByTagName("html")[0];
     html.classList.add("auth-layout");

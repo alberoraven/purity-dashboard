@@ -12,10 +12,6 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  }, {
-    path: '',
     component: AdminLayoutComponent,
     children: [
       {
@@ -45,7 +41,6 @@ const routes: Routes = [
     CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes, {
-      useHash: true
     })
   ],
   exports: [
