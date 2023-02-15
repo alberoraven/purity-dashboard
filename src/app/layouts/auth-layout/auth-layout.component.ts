@@ -14,13 +14,13 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    if (sessionStorage.getItem("isLogin") == "true") {
-      this.islogin = true;
-    } else {
-      if (window.location.pathname.indexOf('privacy-policy') < 1) {
-        this.router.navigateByUrl('/login');
-      }
-    }
+    // if (sessionStorage.getItem("isLogin") == "true") {
+    //   this.islogin = true;
+    // } else {
+    //   if (window.location.pathname.indexOf('privacy-policy') < 1) {
+    //     this.router.navigateByUrl('/login');
+    //   }
+    // }
     var html = document.getElementsByTagName("html")[0];
     html.classList.add("auth-layout");
     var body = document.getElementsByTagName("body")[0];

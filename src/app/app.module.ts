@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -51,7 +52,6 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
     AuthLayoutComponent,
     PrivacyPolicyComponent
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

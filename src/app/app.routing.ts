@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -19,7 +19,8 @@ const routes: Routes = [
         loadChildren: () => import('src/app/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
       }
     ]
-  }, {
+  },
+  {
     path: '',
     component: AuthLayoutComponent,
     children: [
@@ -28,22 +29,23 @@ const routes: Routes = [
         loadChildren: () => import('src/app/layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule)
       }
     ]
-  }, {
-    path: '**',
-    redirectTo: 'dashboard'
   },
   { path: "privacy-policy", component: PrivacyPolicyComponent },
-  { path: "login", component: LoginComponent }
+  { path: "login", component: LoginComponent },
+  {
+    path: '**',
+    redirectTo: 'dashboard'
+  }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes, {
-    })
+    RouterModule.forRoot(routes, { useHash: true })
   ],
   exports: [
-  ],
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }
