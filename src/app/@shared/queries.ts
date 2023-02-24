@@ -9,6 +9,9 @@ export const GetOverallList = gql`query {
       service_detail {
         name
       }
+      vendor_profile{
+        name
+      }
       booking_id
       booking_date
       service_date

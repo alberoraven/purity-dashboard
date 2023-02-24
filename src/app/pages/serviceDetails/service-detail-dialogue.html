@@ -8,22 +8,21 @@
         </mat-form-field><br>
         <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
             <mat-label>Description</mat-label>
-            <input type="text" required aria-label="description" [value]="data.details.description" matInput
+            <input type="text" required aria-label="description" name="description" matInput
                 [(ngModel)]="data.details.description">
         </mat-form-field><br>
         <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
             <mat-label>Duration</mat-label>
-            <input type="text" required aria-label="duration" [value]="data.details.duration" matInput
+            <input type="text" required aria-label="duration" name="duration" matInput
                 [(ngModel)]="data.details.duration">
         </mat-form-field><br>
         <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
             <mat-label>Price</mat-label>
-            <input type="text" required aria-label="price" [value]="data.details.price" matInput
-                [(ngModel)]="data.details.price">
+            <input type="text" required aria-label="price" name="price" matInput [(ngModel)]="data.details.price">
         </mat-form-field><br>
         <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
             <mat-label>Share Amount</mat-label>
-            <input type="text" required aria-label="share_amount" [value]="data.details.share_amount" matInput
+            <input type="text" required aria-label="share_amount" name="share_amount" matInput
                 [(ngModel)]="data.details.share_amount">
         </mat-form-field>
     </form>
