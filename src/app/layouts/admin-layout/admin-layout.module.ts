@@ -22,6 +22,7 @@ import { GraphQLModule } from '../../@shared/graphql.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { VendorListTableComponent } from '../../pages/vender-list-table/vender-list-table.component';
+import { ServiceDetailDialogue, ServiceDetailsComponent } from '../../pages/serviceDetails/service-details.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { VendorListTableComponent } from '../../pages/vender-list-table/vender-l
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MaterialExampleModule,
     NgbModule,
@@ -47,6 +49,8 @@ import { VendorListTableComponent } from '../../pages/vender-list-table/vender-l
     UserProfileComponent,
     BookingDetails,
     VendorListTableComponent,
+    ServiceDetailsComponent,
+    ServiceDetailDialogue,
     IconsComponent,
     VendorAddDialogue,
     VendorListComponent,

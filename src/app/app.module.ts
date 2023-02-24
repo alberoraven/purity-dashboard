@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MaterialExampleModule } from './material.module';
@@ -30,6 +30,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     MatAutocompleteModule,
     HttpClientModule,
     ComponentsModule,
+    ReactiveFormsModule,
     GraphQLModule,
     MaterialExampleModule,
     MatSortModule,

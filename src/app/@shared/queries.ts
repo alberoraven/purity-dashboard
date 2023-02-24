@@ -93,4 +93,29 @@ export const GetUserProfile = (userId: any) => {
     }`;
 };
 
+export const serviceDetailsList = `query {
+  service_details {
+    description
+    duration
+    name
+    price
+    share_amount
+    sid
+  }
+}`
 
+
+export const UpdateServiceDetails = (sid: any, details: any) => gql`  mutation {
+  update_service_details(where: {sid: {_eq: "${sid}"}}, _set: {description: "${details.description}", duration: "${details.duration}", name: "${details.name}", price: "${details.price}", share_amount: "${details.share_amount}"}) {
+    returning {
+      description
+    }
+  }
+}`
+export const InsertServiceDetails = (details: any) => gql`  mutation {
+  insert_service_details(objects: {description: "${details.description}", duration: "${details.duration}", name: "${details.name}", price: "${details.price}", share_amount: "${details.share_amount}", is_active: true}) {
+    returning {
+      name
+    }
+  }
+}`

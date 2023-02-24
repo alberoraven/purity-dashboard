@@ -29,8 +29,13 @@ export class VendorListTableComponent implements OnInit {
         this.elRef.nativeElement.querySelector(".text-success").innerHTML = "Successfully added !!";
         this.elRef.nativeElement.querySelector(".error").style.display = "none";
         this.elRef.nativeElement.querySelector(".text-success").style.display = "block";
-      } else if (error) {
+      } else if (error[0].extensions.code === 'constraint-violation') {
         this.elRef.nativeElement.querySelector(".error").innerHTML = "Email already Exists";
+        this.elRef.nativeElement.querySelector(".text-success").style.display = "none";
+        this.elRef.nativeElement.querySelector(".error").style.display = "block";
+      }
+      else {
+        this.elRef.nativeElement.querySelector(".error").innerHTML = "We are facing an error in updating. Kindly contact admistrator";
         this.elRef.nativeElement.querySelector(".text-success").style.display = "none";
         this.elRef.nativeElement.querySelector(".error").style.display = "block";
       }

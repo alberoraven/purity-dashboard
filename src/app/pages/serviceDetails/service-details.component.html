@@ -91,59 +91,46 @@
     </div>
   </div> -->
 </div>
-<!-- Page content -->
 <div class="container-fluid mt--7">
   <div class="row">
     <div class="col">
-      <div class="card shadow">
-        <div class="card-header border-0">
-          <div class="row align-items-center">
-            <div class="col">
-              <h3 class="mb-0">Vendor Unassigned Users</h3>
-            </div>
-            <div class="col text-right">
-            </div>
-          </div>
+      <div class="card bg-default shadow">
+        <div class="card-header bg-transparent border-0">
+          <h3 class="text-white mb-0">Service Details List</h3>
         </div>
         <div class="table-responsive">
-          <!-- Projects table -->
-          <table class="table align-items-center table-flush" style="display: inline-table;">
-            <thead class="thead-light">
+          <table class="table align-items-center table-dark table-flush" style="display: inline-table;">
+            <thead class="thead-dark">
               <tr>
-                <th scope="col" hidden>UserId</th>
-                <th scope="col">Booking Id</th>
-                <th scope="col">Customer Name</th>
-                <th scope="col">Service Name</th>
-                <th scope="col">Service Date</th>
-                <th scope="col">Booking Date</th>
-                <th scope="col">Assign vendor</th>
-
+                <th scope="col">Name</th>
+                <!-- <th scope="col" class="description">Description</th> -->
+                <th scope="col">Duration</th>
+                <th scope="col">Price</th>
+                <th scope="col">Share amount</th>
+                <th scope="col">Edit</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of unassignedUser;">
-                <th hidden>
-                  {{item.user_profile.user_id}}
-                </th>
+              <tr *ngFor="let item of serviceDetailsList;">
                 <th scope="row">
-                  {{item.booking_id}}
+                  {{item.name}}
                 </th>
+                <!-- <td class="description" [title]="item.description">
+                  {{item.description}}
+                </td> -->
                 <td>
-                  <a [routerLink]="['/user-profile']"
-                    [queryParams]="{User: item.user_profile.user_id}">{{item.user_profile.name}}</a>
+                  {{item.duration}}
                 </td>
                 <td>
-                  {{item.service_detail.name}}
+                  {{item.price}}
                 </td>
                 <td>
-                  {{item.service_date | date: 'dd-MM-yyyy'}}
+                  {{item.share_amount}}
                 </td>
                 <td>
-                  {{item.booking_date | date: 'dd-MM-yyyy'}}
-                </td>
-                <td>
-                  <button mat-raised-button
-                    (click)='openDialog(item.user_profile.user_id, item.booking_id)'>Assign</button>
+                  <button mat-raised-button (click)='openDialog(item)'><i class="fa fa-pencil"
+                      style="font-size:20px;"></i>
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -151,5 +138,37 @@
         </div>
       </div>
     </div>
+  </div>
+  <!-- <div class="col" style="padding-top: 2rem;">
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Add a Vendor
+          </mat-panel-title>
+          <mat-panel-description>
+            Type the Email Id of the vendor to be added
+            <mat-icon>person_add</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="error"></div>
+        <div class="text-success"></div>
+        <form role="form" #emailForm="ngForm" novalidate>
+          <mat-label>Email Id</mat-label>
+          <input class="form-control" matInput [(ngModel)]="vendor.email" type="email" name="Email" #email="ngModel"
+            required>
+        </form>
+
+        <mat-action-row>
+          <button mat-button color="primary" [disabled]="!emailForm.valid" (click)="submit(emailForm)">Submit</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+  </div> -->
+  <div class="addService">
+    <button mat-raised-button (click)='openDialog(serviceDetailsList.length)'><i class="fa fa-plus"
+        style="font-size:20px;"></i>
+    </button>
   </div>
 </div>
