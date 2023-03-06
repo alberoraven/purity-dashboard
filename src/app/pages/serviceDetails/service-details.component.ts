@@ -1,9 +1,7 @@
 import { Component, ElementRef, OnInit, Inject } from '@angular/core';
 import * as Query from '../../@shared/queries';
-import { FormBuilder } from '@angular/forms';
 import { nhost } from '../../@shared/global';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 
 export interface DialogData {
   details: {};
@@ -29,8 +27,6 @@ export class ServiceDetailsComponent implements OnInit {
   }
 
   openDialog(item): void {
-    console.log(item, typeof (item));
-
     const dialogRef = this.dialog.open(ServiceDetailDialogue, {
       width: '500px',
       data: { details: (typeof (item) !== 'number' ? item : {}) },
@@ -41,17 +37,14 @@ export class ServiceDetailsComponent implements OnInit {
       if (result.sid) {
         const { data, error } = await nhost.graphql.request(Query.UpdateServiceDetails(result.sid, result))
         if (data) {
-          console.log(data);
+          // console.log(data);
         }
       } else if (!result.sid) {
         const { data, error } = await nhost.graphql.request(Query.InsertServiceDetails(result))
         if (data) {
-          console.log(data);
+          // console.log(data);
         }
-        console.log(result);
       }
-
-      console.log('The dialog was closed', result);
     });
   }
   async getServiceDetailsList() {

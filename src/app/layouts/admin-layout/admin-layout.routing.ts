@@ -8,6 +8,7 @@ import { BookingDetails } from '../../pages/bookingDetails/booking-details.compo
 import { LogoutComponent } from '../../pages/logout/logout.component';
 import { VendorListTableComponent } from '../../pages//vender-list-table/vender-list-table.component';
 import { ServiceDetailsComponent } from '../../pages/serviceDetails/service-details.component';
+import { OfferDetailsComponent } from '../../pages/offerDetails/offer-details.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
@@ -17,5 +18,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'logout', component: LogoutComponent },
     { path: 'vendor-List', component: VendorListTableComponent },
     { path: 'service-details', component: ServiceDetailsComponent },
+    { path: 'offer-details', component: OfferDetailsComponent },
     { path: 'assign-a-vendor', component: VendorListComponent }
 ];

@@ -1,8 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import * as Query from '../../@shared/queries';
 import { NgForm } from '@angular/forms';
 import { nhost } from '../../@shared/global';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+export interface DialogData {
+  details: {};
+}
 
 @Component({
   selector: 'app-vender-list-table',
@@ -15,7 +19,8 @@ export class VendorListTableComponent implements OnInit {
   vendor = { email: '' };
 
   constructor(
-    public elRef: ElementRef
+    public elRef: ElementRef,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -42,10 +47,47 @@ export class VendorListTableComponent implements OnInit {
 
     }
   }
+  openDialog(item): void {
+    const dialogRef = this.dialog.open(VendorListDialogue, {
+      width: '500px',
+      data: { details: (typeof (item) !== 'number' ? item : {}) },
+      panelClass: 'custom-modalbox'
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result.user_id) {
+        const { data, error } = await nhost.graphql.request(Query.UpdateVendorDetais(result.user_id, result))
+        if (data) {
+          // console.log(data);
+        }
+      }
+    });
+  }
   async getVendorList() {
     const { data, error } = await nhost.graphql.request(Query.vendorList)
     if (data) {
       this.vendorList = [...(data.vendor_profiles)];
     }
+  }
+}
+
+@Component({
+  selector: 'vendor-list-dialogue',
+  templateUrl: 'vendor-list-dialogue.html',
+})
+
+export class VendorListDialogue {
+  constructor(
+    public dialogRef: MatDialogRef<VendorListDialogue>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+  ) { }
+
+  serviceData: any;
+
+  ngOnInit() {
+  }
+
+  async onClick() {
+    this.dialogRef.close();
   }
 }

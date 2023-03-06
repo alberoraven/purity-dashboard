@@ -21,8 +21,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { GraphQLModule } from '../../@shared/graphql.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { VendorListTableComponent } from '../../pages/vender-list-table/vender-list-table.component';
+import { VendorListDialogue, VendorListTableComponent } from '../../pages/vender-list-table/vender-list-table.component';
 import { ServiceDetailDialogue, ServiceDetailsComponent } from '../../pages/serviceDetails/service-details.component';
+import { OfferDetailDialogue, OfferDetailsComponent } from '../../pages/offerDetails/offer-details.component';
 
 
 @NgModule({
@@ -51,6 +52,9 @@ import { ServiceDetailDialogue, ServiceDetailsComponent } from '../../pages/serv
     VendorListTableComponent,
     ServiceDetailsComponent,
     ServiceDetailDialogue,
+    VendorListDialogue,
+    OfferDetailsComponent,
+    OfferDetailDialogue,
     IconsComponent,
     VendorAddDialogue,
     VendorListComponent,

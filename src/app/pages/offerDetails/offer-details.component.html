@@ -96,47 +96,47 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <h3 class="mb-0">Vendor List</h3>
+          <h3 class="mb-0">Service Details List</h3>
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush" style="display: inline-table;">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Email</th>
-                <th scope="col">Name</th>
-                <th scope="col">City</th>
-                <th scope="col">Locality</th>
-                <th scope="col">wallet Money</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Edit</th>
+                <th scope="col">Title</th>
+                <!-- <th scope="col" class="description">Description</th> -->
+                <th scope="col">Discount</th>
+                <th scope="col">Coupon code</th>
+                <th scope="col">Service</th>
+                <th scope="col">Is valid</th>
+                <!-- <th scope="col">Edit</th> -->
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of vendorList;">
+              <tr *ngFor="let item of offerDetailsList;">
                 <th scope="row">
-                  <a [routerLink]="['/user-profile']" [queryParams]="{prop: item.user_id}">{{item.email}}</a>
-
+                  {{item.title}}
                 </th>
+                <!-- <td class="description" [title]="item.description">
+                  {{item.description}}
+                </td> -->
                 <td>
-                  {{item.name}}
+                  {{item.discount}}
                 </td>
                 <td>
-                  {{item.city}}
+                  {{item.coupon_code}}
                 </td>
                 <td>
-                  {{item.locality}}
+                  {{item.service_detail.name}}
                 </td>
-                <td>
-                  {{item.wallet_money}}
+                <td class="status">
+                  <i *ngIf="item.is_valid" class="ni ni-check-bold text-green"></i>
+                  <i *ngIf="!item.is_valid" class="ni ni-fat-remove text-red"></i>
                 </td>
-                <td>
-                  {{item.phone}}
-                </td>
-                <td>
+                <!-- <td>
                   <button mat-raised-button (click)='openDialog(item)'><i class="fa fa-pencil"
                       style="font-size:20px;"></i>
                   </button>
-                </td>
+                </td> -->
               </tr>
             </tbody>
           </table>
@@ -144,7 +144,7 @@
       </div>
     </div>
   </div>
-  <div class="col" style="padding-top: 2rem;">
+  <!-- <div class="col" style="padding-top: 2rem;">
     <mat-accordion class="example-headers-align">
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
@@ -170,5 +170,10 @@
       </mat-expansion-panel>
 
     </mat-accordion>
-  </div>
+  </div> -->
+  <!-- <div class="addService">
+    <button mat-raised-button (click)='openDialog(offerDetailsList.length)'><i class="fa fa-plus"
+        style="font-size:20px;"></i>
+    </button>
+  </div> -->
 </div>
