@@ -9,23 +9,31 @@ import { Router } from '@angular/router';
 export class AuthLayoutComponent implements OnInit, OnDestroy {
   test: Date = new Date();
   public isCollapsed = true;
+  public islogin = false;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    var html = document.getElementsByTagName("html")[0];
+    // if (sessionStorage.getItem("isLogin") == "true") {
+    //   this.islogin = true;
+    // } else {
+    //   if (window.location.pathname.indexOf('privacy-policy') < 1) {
+    //     this.router.navigateByUrl('/login');
+    //   }
+    // }
+    const html = document.getElementsByTagName("html")[0];
     html.classList.add("auth-layout");
-    var body = document.getElementsByTagName("body")[0];
+    const body = document.getElementsByTagName("body")[0];
     body.classList.add("bg-default");
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
-   });
+    });
 
   }
   ngOnDestroy() {
-    var html = document.getElementsByTagName("html")[0];
+    const html = document.getElementsByTagName("html")[0];
     html.classList.remove("auth-layout");
-    var body = document.getElementsByTagName("body")[0];
+    const body = document.getElementsByTagName("body")[0];
     body.classList.remove("bg-default");
   }
 }
