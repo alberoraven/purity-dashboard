@@ -5,13 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { LoginComponent } from './pages/login/login.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'admin',
     component: AdminLayoutComponent,
     children: [
       {
@@ -21,7 +21,17 @@ const routes: Routes = [
     ]
   },
   {
-    path: '',
+    path: 'user',
+    component: UserLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/layouts/user-layout/user-layout.module').then(m => m.UserLayoutModule)
+      }
+    ]
+  },
+  {
+    path: 'auth',
     component: AuthLayoutComponent,
     children: [
       {
@@ -30,12 +40,11 @@ const routes: Routes = [
       }
     ]
   },
-  { path: "privacy-policy", component: PrivacyPolicyComponent },
-  { path: "login", component: LoginComponent },
   {
     path: '**',
-    redirectTo: 'dashboard'
-  }
+    redirectTo: 'auth'
+  },
+  { path: "privacy-policy", component: PrivacyPolicyComponent }
 ];
 
 @NgModule({

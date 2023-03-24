@@ -19,5 +19,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'vendor-List', component: VendorListTableComponent },
     { path: 'service-details', component: ServiceDetailsComponent },
     { path: 'offer-details', component: OfferDetailsComponent },
-    { path: 'assign-a-vendor', component: VendorListComponent }
+    { path: 'assign-a-vendor', component: VendorListComponent },
+    {
+        path: '**',
+        redirectTo: 'dashboard'
+    }
 ];

@@ -8,6 +8,8 @@ import { MaterialExampleModule } from './material.module';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
+
 import { GraphQLModule } from './@shared/graphql.module';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -51,6 +53,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
+    UserLayoutComponent,
     PrivacyPolicyComponent
   ],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Inject } from '@angular/core';
-import * as Query from '../../@shared/queries';
-import { nhost } from '../../@shared/global';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { nhost } from '../../@shared/global';
+import * as Query from '../../@shared/queries';
 
 export interface DialogData {
   details: {};

@@ -109,6 +109,8 @@ export const serviceDetailsList = `query {
     price
     share_amount
     sid
+    reviews_count
+    ratings
   }
 }`
 

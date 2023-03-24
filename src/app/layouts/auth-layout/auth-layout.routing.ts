@@ -7,5 +7,9 @@ import { RegisterComponent } from '../../pages/register/register.component';
 export const AuthLayoutRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'privacy-policy', component: PrivacyPolicyComponent },
-    { path: 'register', component: RegisterComponent }
+    { path: 'register', component: RegisterComponent },
+    {
+        path: '**',
+        redirectTo: 'login'
+    }
 ];

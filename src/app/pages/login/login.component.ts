@@ -20,14 +20,11 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    setTimeout(() => {
-      if (nhost.auth.getUser() && nhost.auth.getUser().roles.includes("admin")) {
-        this.storeValuetoStorage(nhost.auth.getUser())
-        this.router.navigateByUrl('/dashboard');
-      } else {
-        this.ngOnInit();
-      }
-    }, 500);
+    console.log(nhost.auth.getUser());
+    if (nhost.auth.getUser() && nhost.auth.getUser().roles.includes("admin")) {
+      this.storeValuetoStorage(nhost.auth.getUser())
+      this.router.navigateByUrl('/admin/dashboard');
+    }
   }
 
   async onLogin(form: NgForm) {
@@ -37,12 +34,13 @@ export class LoginComponent implements OnInit {
         email: form.value.username,
         password: form.value.password
       }).then(res => {
+        console.log(res);
         if (res.error) {
           this.elRef.nativeElement.querySelector(".error").innerHTML = res.error.message + "!";
         } else {
           if (res.session.user.roles.includes("admin")) {
             this.storeValuetoStorage(res.session.user)
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/admin/dashboard');
           } else {
             this.elRef.nativeElement.querySelector(".error").innerHTML = "UnAuthorised User";
             return nhost.auth.signOut().then(() => {
