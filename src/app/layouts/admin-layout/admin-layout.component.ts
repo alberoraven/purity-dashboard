@@ -13,7 +13,7 @@ export class AdminLayoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if ((sessionStorage.getItem("isLogin") !== 'true')) {
+    if ((sessionStorage.getItem("isLogin") !== 'true') && window.location.pathname.indexOf('privacy-policy') < 1) {
       this.router.navigateByUrl('/login');
     }
   }

@@ -12,7 +12,8 @@ import { LogoutComponent } from '../../pages/logout/logout.component';
   imports: [
     CommonModule,
     RouterModule.forChild(AuthLayoutRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
     // NgbModule
   ],
   declarations: [
