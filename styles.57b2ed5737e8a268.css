@@ -2949,11 +2949,18 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
 
 html, body {
   height: 100%;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  position: relative;
+  min-height: 100%;
+}
+
+.modal-open .modal {
+  z-index: 1056;
 }
 @charset "UTF-8";
 :root {
