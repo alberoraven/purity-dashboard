@@ -1,4 +1,36 @@
-mat-toolbar.header {
-    position: fixed;
-    z-index: 2;
+.user-layout-wrapper {
+    min-height: 100%;
+    position: relative;
+    mat-toolbar.user-layout-header {
+        position: fixed;
+        z-index: 2;
+        background-color: white !important;
+    }
+    .user-layout-container {
+        max-width: 1224px;
+        margin: 0 auto auto;
+        width: 100%;
+    }
+    img {
+        width: 100px;
+    }
+    .example-spacer {
+        flex: 1 1 auto;
+    }
+    .user-layout-footer{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1rem;
+        font-size: 0.875rem;
+    }
+    .dropdown-menu-arrow  {
+        h6 {
+            font-size: 0.625rem !important;
+        }
+        a {
+            cursor: pointer;
+        }
+    }
 }

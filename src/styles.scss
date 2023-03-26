@@ -34,5 +34,9 @@ $purity-client-theme: mat.define-light-theme((
 @include mat.all-component-themes($purity-client-theme);
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; box-sizing: border-box;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; position: relative; min-height: 100%;}
+
+.modal-open .modal {
+    z-index: 1056;
+}

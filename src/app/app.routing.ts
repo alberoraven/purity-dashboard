@@ -42,7 +42,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'auth'
+    redirectTo: 'user'
   },
   { path: "privacy-policy", component: PrivacyPolicyComponent }
 ];
@@ -51,7 +51,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes, { useHash: true })
+    RouterModule.forRoot(routes, { useHash: false })
   ],
   exports: [
     RouterModule

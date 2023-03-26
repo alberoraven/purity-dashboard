@@ -17,11 +17,15 @@ import { MaterialExampleModule } from '../../material.module';
 import { UserLayoutRoutes } from './user-layout.routing';
 import { GraphQLModule } from '../../@shared/graphql.module';
 import { UserHomeComponent } from '../../pages/user-home/user-home.component';
+import { ServiceDetailsComponent } from '../../pages/service-details/service-details.component';
 
+import { ComponentsModule } from '../../components/components.module';
+import { LoginModalComponent } from '../../pages/login-modal/login-modal.component';
+import { BookingModalComponent } from '../../pages/booking-modal/booking-modal.component';
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(UserLayoutRoutes),
+    ComponentsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -35,10 +39,14 @@ import { UserHomeComponent } from '../../pages/user-home/user-home.component';
     MatAutocompleteModule,
     ReactiveFormsModule,
     GraphQLModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    RouterModule.forChild(UserLayoutRoutes)
   ],
   declarations: [
-    UserHomeComponent
+    UserHomeComponent,
+    ServiceDetailsComponent,
+    LoginModalComponent,
+    BookingModalComponent,
   ], 
   exports: [
     MatFormFieldModule

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/@shared/shared.service';
 import { nhost } from '../../@shared/global';
 
 
@@ -12,12 +13,14 @@ export class LogoutComponent implements OnInit {
 
   constructor(
     public router: Router,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit() {
     nhost.auth.signOut().then(() => {
       sessionStorage.setItem("isLogin", "false");
-      this.router.navigateByUrl('/login');
+      this.sharedService.userData.next(null);
+      this.router.navigateByUrl('/user/login');
     })
   }
 

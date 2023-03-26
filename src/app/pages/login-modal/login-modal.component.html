@@ -1,0 +1,52 @@
+<!-- <div class="modal-header">
+    <h4 class="modal-title">Hi there!</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <p>Hello, {{ name }}!</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div> -->
+
+
+<div class="modal-content">
+    <div class="modal-body p-0">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-header bg-white">
+          <div class="text-muted text-center mb-3">
+            <small>Sign in with</small>
+          </div>
+          <div class="btn-wrapper text-center">
+            <mat-form-field class="example-form-field" appearance="outline">
+              <mat-label>Phone</mat-label>
+              <mat-icon matPrefix>phone</mat-icon>
+              <input matInput type="tel" [(ngModel)]="phone">
+              <button *ngIf="phone" matSuffix mat-icon-button aria-label="Clear" (click)="phone=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+            <mat-form-field class="example-form-field" appearance="outline" *ngIf="hasRequestedOTP">
+              <mat-label>Phone</mat-label>
+              <mat-icon matPrefix>password</mat-icon>
+              <input matInput type="number" [(ngModel)]="otp">
+              <button *ngIf="otp" matSuffix mat-icon-button aria-label="Clear" (click)="otp=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+            
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- <div class="text-center text-muted mb-4">
+            <small>Or sign in with credentials</small>
+          </div> -->
+          
+          <div class="text-center">
+            <button *ngIf="!hasRequestedOTP" mat-flat-button color="primary"(click)="requestOTP()">Request OTP</button>
+            <button *ngIf="hasRequestedOTP" mat-flat-button color="primary"(click)="signIn()">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

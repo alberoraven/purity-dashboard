@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+
 import { nhost } from '../../@shared/global';
 import * as Query from '../../@shared/queries';
 
@@ -9,11 +14,23 @@ import * as Query from '../../@shared/queries';
 })
 export class UserHomeComponent implements OnInit {
   public servicesList: any[];
+  public focus: any;
+  myControl = new FormControl('');
+  options: string[] = [];
+  filteredOptions: Observable<string[]>;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.getServices();
+    this.getServices().then(res => {
+      this.options = this.servicesList;
+      this.filteredOptions = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map((value: any) => value.length >= 2 ? this._filter(value || '') : []),
+      );
+    });
   }
 
   async getServices() {
@@ -24,4 +41,15 @@ export class UserHomeComponent implements OnInit {
     }
   }
 
+  getServiceDetails(service) {
+    this.router.navigate([`user/service-details/${service.sid}`], {state: service});
+  }
+
+  private _filter(value: string): string[] {
+    // const filterValue = value.toLowerCase();
+    return this.options.filter((option: any) => option.name.toLowerCase().includes(value.toLowerCase()));
+  }
 }
+
+// return this.options.map((x: any) => x.name).filter(option =>
+//   option.toLowerCase().includes(value.toLowerCase()));

@@ -1,15 +1,103 @@
 <div class="user-layout-wrapper">
-  <mat-toolbar color="primary" class="header">
+  <mat-toolbar class="user-layout-header">
     <mat-toolbar-row>
-      <span>My App</span>
+      <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/dashboard']">
+        <img src="assets/img/brand/logo-transparent.png" />
+        <!-- <span>Purity Smart Services</span> -->
+      </a>
       <span class="example-spacer"></span>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
+      <!-- <button mat-raised-button mat-icon-button color="primary" aria-label="Example icon-button with menu icon">
+        <mat-icon>person</mat-icon>
+      </button> -->
+       <!-- User -->
+    <ul class="navbar-nav align-items-center d-none d-md-flex">
+      <li class="nav-item" ngbDropdown placement="bottom-right">
+        <a class="nav-link pr-0" role="button" ngbDropdownToggle>
+          <div class="media align-items-center">
+            <!-- <span class="avatar avatar-sm rounded-circle">
+              <img alt="Image placeholder" [src]=userAvatar>
+            </span>
+            <div class="media-body ml-2 d-none d-lg-block">
+              <span class="mb-0 text-sm  font-weight-bold" [innerHTML]=userName></span>
+            </div> -->
+          <button mat-raised-button mat-icon-button color="primary" aria-label="Example icon-button with menu icon">
+        <mat-icon>person</mat-icon>
       </button>
+
+          </div>
+        </a>
+        <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+          <div class=" dropdown-header noti-title">
+            <h6 class="text-overflow m-0">Welcome {{user?.displayName}}!</h6>
+          </div>
+          <div *ngIf="user">
+            <a routerLinkActive="active" [routerLink]="['/user/user-profile']" class="dropdown-item">
+              <i class="ni ni-single-02"></i>
+              <span>My profile</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a routerLinkActive="active" [routerLink]="['/user/logout']" class="dropdown-item">
+              <i class="ni ni-user-run"></i>
+              <span>Logout</span>
+            </a>
+          </div>
+          <div *ngIf="!user">
+            <a routerLinkActive="active" class="dropdown-item" (click)="openModal()">
+              <i class="ni ni-single-02"></i>
+              <span>Login</span>
+            </a>
+            <ng-template #classic1 let-c="close" let-d="dismiss">
+              <div class="modal-content">
+                <div class="modal-body p-0">
+                  <div class="card bg-secondary shadow border-0">
+                    <div class="card-header bg-white">
+                      <div class="text-muted text-center mb-3">
+                        <small>Sign in with</small>
+                      </div>
+                      <div class="btn-wrapper text-center">
+                        <mat-form-field class="example-form-field" appearance="outline">
+                          <mat-label>Phone</mat-label>
+                          <mat-icon matPrefix>phone</mat-icon>
+                          <input matInput type="tel" [(ngModel)]="phone">
+                          <button *ngIf="phone" matSuffix mat-icon-button aria-label="Clear" (click)="phone=''">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                        </mat-form-field>
+                        <mat-form-field class="example-form-field" appearance="outline" *ngIf="hasRequestedOTP">
+                          <mat-label>Phone</mat-label>
+                          <mat-icon matPrefix>password</mat-icon>
+                          <input matInput type="number" [(ngModel)]="otp">
+                          <button *ngIf="otp" matSuffix mat-icon-button aria-label="Clear" (click)="otp=''">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                        </mat-form-field>
+                        
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <!-- <div class="text-center text-muted mb-4">
+                        <small>Or sign in with credentials</small>
+                      </div> -->
+                      
+                      <div class="text-center">
+                        <button *ngIf="!hasRequestedOTP" mat-flat-button color="primary"(click)="requestOTP()">Request OTP</button>
+                        <button *ngIf="hasRequestedOTP" mat-flat-button color="primary"(click)="signIn()">Login</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </li>
+    </ul>
     </mat-toolbar-row>
   </mat-toolbar>
-  <router-outlet></router-outlet>
-  <mat-toolbar class="footer">
-    <span>All Rights Reserved 2023</span>
+  <div class="user-layout-container">
+    <router-outlet></router-outlet>
+  </div>
+  <mat-toolbar class="user-layout-footer">
+    <span class="text-muted">All Rights Reserved 2023</span>
   </mat-toolbar>
 </div>

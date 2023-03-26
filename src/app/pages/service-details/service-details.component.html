@@ -4,9 +4,9 @@
   <span class="mask bg-gradient-danger opacity-8"></span>
   <!-- Header container -->
   <div class="container-fluid d-flex align-items-center">
-    <div class="row">
+    <div class="row" style="width: 100%;">
       <div class="col-lg-7 col-md-10">
-        <h1 class="display-2 text-white">{{user?.displayName}}</h1>
+        <h1 class="display-2 text-white">{{serviceDetail?.name}}</h1>
         <!-- <a href="#!" class="btn btn-info">Edit profile</a> -->
       </div>
     </div>
@@ -15,20 +15,18 @@
 <div class="container-fluid mt--7">
   <div class="row">
     <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-      <div class="card card-profile shadow">
+      <!-- <div class="card card-profile shadow">
         <div class="row justify-content-center">
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
               <a href="javascript:void(0)">
-                <img src="assets/img/theme/avatar.png" class="rounded-circle">
+                <img [src]="user?.avatarUrl" class="rounded-circle">
               </a>
             </div>
           </div>
         </div>
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="d-flex justify-content-between">
-            <!-- <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
-            <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a> -->
           </div>
         </div>
         
@@ -39,14 +37,15 @@
             </h3>
           </div>
         </div>
-      </div>
+      </div> -->
+      <app-service-card-widget [service]="serviceDetail"></app-service-card-widget>
     </div>
-    <div class="col-xl-8 order-xl-1">
+    <div class="col-xl-8 order-xl-1 mb-8">
       <div class="card bg-secondary shadow">
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
             <div class="col-8">
-              <h3 class="mb-0">My account</h3>
+              <h3 class="mb-0">Service Details</h3>
             </div>
             <!-- <div class="col-4 text-right">
               <a href="#!" class="btn btn-sm btn-primary">Settings</a>
@@ -55,38 +54,51 @@
         </div>
         <div class="card-body">
           <form>
-            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <!-- <h6 class="heading-small text-muted mb-4">User information</h6> -->
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-username">Username</label>
-                    <input type="text" *ngIf="user?.displayName" id="input-username"
-                      class="form-control form-control-alternative" placeholder="Username" [value]=user?.displayName
-                      disabled>
+                    <label class="form-control-label" for="input-username">Service Name</label>
+                    <p class="text-sm">
+                        {{serviceDetail?.name}}
+                      </p>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">Email address</label>
-                    <input type="email" id="input-email" class="form-control form-control-alternative"
-                      [value]=user?.email disabled>
+                    <label class="form-control-label" for="input-email">Duration</label>
+                    <p class="text-sm">
+                        {{serviceDetail?.duration}} hours
+                    </p>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">Phone</label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative"
-                      placeholder="Phone" [value]=user?.phoneNumber disabled>
+                    <label class="form-control-label" for="input-first-name">Price</label>
+                    <p class="text-sm">
+                        ₹ {{serviceDetail?.price}} Onwards**
+                    </p>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Role</label>
-                    <input type="text" id="input-last-name" class="form-control form-control-alternative"
-                      [value]=user?.roles disabled>
+                    <label class="form-control-label" for="input-last-name">Total Reviews</label>
+                    <p class="text-sm">
+                        {{serviceDetail?.reviews_count}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Description</label>
+                      <p class="text-sm">
+                        {{serviceDetail?.description}}
+                      </p>
                   </div>
                 </div>
               </div>
@@ -129,6 +141,9 @@
               </div>
             </div>
           </form>
+        </div>
+        <div class="card-footer">
+            <button mat-flat-button color="primary" (click)="bookNow()">Book Now</button>
         </div>
       </div>
     </div>
