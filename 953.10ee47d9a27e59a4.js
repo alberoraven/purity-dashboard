@@ -70,7 +70,7 @@
       email
     }
   }
-}`,Se=e=>`query {\n      user_profiles(where: {user_id: {_eq: "${e}"}}) {\n    \t\tuser {\n          email\n          avatarUrl\n          displayName\n        }\n        phone\n    \t\tuser_addresses(where: {is_preferred_address: {_eq: true}}) {\n          address\n          locality\n          city\n          pincode\n        }\n      }\n    }`,Re="query {\n  service_details {\n    description\n    duration\n    name\n    price\n    share_amount\n    sid\n    reviews_count\n    ratings\n  }\n}",Le=(e,t)=>N`  mutation {
+}`,Se=e=>`query {\n      user_profiles(where: {user_id: {_eq: "${e}"}}) {\n    \t\tuser {\n          email\n          avatarUrl\n          displayName\n        }\n        phone\n    \t\tuser_addresses {\n          id\n          address_name\n          address\n          locality\n          city\n          pincode\n          is_preferred_address\n        }\n      }\n    }`,Re="query {\n  service_details {\n    description\n    duration\n    name\n    price\n    share_amount\n    sid\n    reviews_count\n    ratings\n  }\n}",Le=(e,t)=>N`  mutation {
   update_service_details(where: {sid: {_eq: "${e}"}}, _set: {description: "${t.description}", duration: "${t.duration}", name: "${t.name}", price: "${t.price}", share_amount: "${t.share_amount}"}) {
     returning {
       description
