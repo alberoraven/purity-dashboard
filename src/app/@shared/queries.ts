@@ -91,11 +91,14 @@ export const GetUserProfile = (userId: any) => {
           displayName
         }
         phone
-    		user_addresses(where: {is_preferred_address: {_eq: true}}) {
+    		user_addresses {
+          id
+          address_name
           address
           locality
           city
           pincode
+          is_preferred_address
         }
       }
     }`;

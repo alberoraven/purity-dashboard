@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -50,7 +50,8 @@ import { BookingModalComponent } from '../../pages/booking-modal/booking-modal.c
   ], 
   exports: [
     MatFormFieldModule
-  ]
+  ],
+  providers: [DatePipe]
 })
 
 export class UserLayoutModule { }

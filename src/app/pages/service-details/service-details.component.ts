@@ -91,8 +91,10 @@ export class ServiceDetailsComponent implements OnInit {
   }
 
   openBookingModal() {
-		const modalRef = this.modalService.open(BookingModalComponent, { windowClass: 'modal-mini', size: 'md', centered: true }).result.then((result) => {
+		const modalRef = this.modalService.open(BookingModalComponent, { windowClass: 'modal-mini', size: 'md', centered: true });
+    modalRef.result.then((result) => {
       console.log(`Closed with: ${result}`);
-    })
+    });
+    modalRef.componentInstance.serviceDetail = this.serviceDetail;
   }
 }
