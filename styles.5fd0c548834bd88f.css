@@ -2966,6 +2966,17 @@ body {
 .cdk-overlay-container {
   z-index: 1057;
 }
+
+h3.modal-title {
+  margin: 0px;
+}
+
+.swal2-styled.swal2-confirm {
+  color: #fff !important;
+  background-color: #2dce89 !important;
+  border-color: #2dce89 !important;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
 @charset "UTF-8";
 :root {
   --blue: #5e72e4;
