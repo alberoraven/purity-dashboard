@@ -24,6 +24,7 @@ import { LoginModalComponent } from '../../pages/login-modal/login-modal.compone
 import { BookingModalComponent } from '../../pages/booking-modal/booking-modal.component';
 import { MyProfileComponent } from '../../pages/my-profile/my-profile.component';
 import { AddNewAddressModalComponent } from '../../pages/add-new-address-modal/add-new-address-modal.component';
+import { MyBookingsComponent } from '../../pages/my-bookings/my-bookings.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -51,6 +52,7 @@ import { AddNewAddressModalComponent } from '../../pages/add-new-address-modal/a
     BookingModalComponent,
     MyProfileComponent,
     AddNewAddressModalComponent,
+    MyBookingsComponent,
   ], 
   exports: [
     MatFormFieldModule

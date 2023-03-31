@@ -296,6 +296,7 @@ export const ServiceBooking = (bookingData: any) => {
       user_id: "${bookingData.user_id}",
       service_id: "${bookingData.service_id}",
       service_date: "${bookingData.service_date}",
+      address_id: "${bookingData.address_id}",
       address: "${bookingData.address}",
       city: "${bookingData.city}",
       locality: "${bookingData.locality}",
@@ -325,4 +326,39 @@ export const ServiceBooking = (bookingData: any) => {
       }
     }
   }`;
+};
+
+export const GetUserBookingsList = (user_id: string) => {
+  return `query {
+      active_bookings(order_by: {booking_id: desc}, where: {user_id: {_eq: "${user_id}"}}) {
+        booking_id
+        booking_date
+        service_date
+        user_id
+        booking_status {
+          status_id
+          name
+        }
+        user_address {
+          id
+          address_name
+          address
+          locality
+          city
+          pincode
+        }
+        vendor_profile {
+          user_id
+          name
+          phone
+        }
+        service_detail {
+          sid
+          name
+          description
+          duration
+          price
+        }
+      }
+    }`;
 };

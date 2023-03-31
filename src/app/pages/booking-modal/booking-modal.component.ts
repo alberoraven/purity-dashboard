@@ -74,6 +74,7 @@ export class BookingModalComponent implements OnInit {
 
   createAddressForm() {
     this.addressForm = this.formBuilder.group({
+      address_id: [{value: '', disabled: true}, [Validators.required]],
       address_name: ['', [Validators.required, Validators.minLength(3)]],
       address: [ {value: '', disabled: true}, [Validators.required, Validators.minLength(3)]],
       locality: [{value: '', disabled: true}, [Validators.required, Validators.minLength(3)]],
@@ -83,6 +84,8 @@ export class BookingModalComponent implements OnInit {
   }
 
   setAddressFormValue(formData) {
+    console.log(formData);
+    this.addressForm.controls['address_id'].setValue(formData.id);
     this.addressForm.controls['address_name'].setValue(formData.address_name);
     this.addressForm.controls['address'].setValue(formData.address);
     this.addressForm.controls['locality'].setValue(formData.locality);
@@ -90,10 +93,12 @@ export class BookingModalComponent implements OnInit {
     this.addressForm.controls['pincode'].setValue(formData.pincode);
   }
   async onBookingFormSubmit() {
+    console.log(this.addressForm.getRawValue());
     const bookingData = {
       user_id : nhost.auth.getUser().id,
       service_id: this.serviceDetail.sid,
       service_date: this.datePipe.transform(this.selected, 'yyyy-MM-dd'),
+      address_id: this.addressForm.getRawValue().address_id,
       address: this.addressForm.getRawValue().address,
       locality: this.addressForm.getRawValue().locality,
       city: this.addressForm.getRawValue().city,
