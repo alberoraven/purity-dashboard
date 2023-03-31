@@ -10,7 +10,7 @@
         <mat-icon>person</mat-icon>
       </button> -->
        <!-- User -->
-    <ul class="navbar-nav align-items-center d-none d-md-flex">
+    <ul class="navbar-nav align-items-center d-md-flex">
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link pr-0" role="button" ngbDropdownToggle>
           <div class="media align-items-center">
@@ -28,10 +28,11 @@
         </a>
         <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
           <div class=" dropdown-header noti-title">
-            <h6 class="text-overflow m-0">Welcome {{user?.displayName}}!</h6>
+            <h6 class="text-overflow m-0">Welcome {{nhost.auth.getUser()?.displayName}}!</h6>
+            <!-- <p>{{nhost.auth.getUser() | json}}</p> -->
           </div>
-          <div *ngIf="user">
-            <a routerLinkActive="active" [routerLink]="['/user/user-profile']" class="dropdown-item">
+          <div *ngIf="nhost.auth.getUser()">
+            <a routerLinkActive="active" [routerLink]="['/user/my-profile']" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
             </a>
@@ -41,7 +42,7 @@
               <span>Logout</span>
             </a>
           </div>
-          <div *ngIf="!user">
+          <div *ngIf="!nhost.auth.getUser()">
             <a routerLinkActive="active" class="dropdown-item" (click)="openModal()">
               <i class="ni ni-single-02"></i>
               <span>Login</span>

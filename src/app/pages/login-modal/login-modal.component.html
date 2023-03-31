@@ -18,33 +18,46 @@
             <small>Sign in with</small>
           </div>
           <div class="btn-wrapper text-center">
-            <mat-form-field class="example-form-field" appearance="outline">
-              <mat-label>Phone</mat-label>
-              <mat-icon matPrefix>phone</mat-icon>
-              <input matInput type="tel" [(ngModel)]="phone">
-              <button *ngIf="phone" matSuffix mat-icon-button aria-label="Clear" (click)="phone=''">
-                <mat-icon>close</mat-icon>
-              </button>
-            </mat-form-field>
-            <mat-form-field class="example-form-field" appearance="outline" *ngIf="hasRequestedOTP">
-              <mat-label>Phone</mat-label>
-              <mat-icon matPrefix>password</mat-icon>
-              <input matInput type="number" [(ngModel)]="otp">
-              <button *ngIf="otp" matSuffix mat-icon-button aria-label="Clear" (click)="otp=''">
-                <mat-icon>close</mat-icon>
-              </button>
-            </mat-form-field>
-            
+            <form [formGroup]="loginForm">
+                <mat-form-field class="example-form-field" appearance="outline">
+                <mat-label>Phone</mat-label>
+                <mat-icon matPrefix>phone</mat-icon>
+                <input matInput type="tel" [(ngModel)]="phone" formControlName="phone_number" maxlength="10" minlength="10">
+                <button *ngIf="phone" matSuffix mat-icon-button aria-label="Clear" (click)="phone=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error>
+                    Please enter a valid phone number
+                </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-form-field" appearance="outline" *ngIf="hasRequestedOTP">
+                <mat-label>OTP</mat-label>
+                <mat-icon matPrefix>password</mat-icon>
+                <input matInput type="password" [(ngModel)]="otp" maxlength="6" minlength="6" formControlName="otp">
+                <button *ngIf="otp" matSuffix mat-icon-button aria-label="Clear" (click)="otp=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error>
+                    Please enter a valid OTP
+                </mat-error>
+                <mat-error *ngIf="showInvalidOtpError">
+                    Invalid OTP.
+                </mat-error>
+                </mat-form-field>
+                <div class="loader" *ngIf="showLoader">
+                    <mat-spinner color="primary" [diameter]="50"></mat-spinner>
+                </div>
+            </form>
           </div>
         </div>
         <div class="card-body">
-          <!-- <div class="text-center text-muted mb-4">
-            <small>Or sign in with credentials</small>
-          </div> -->
+          <div class="text-center text-muted mb-4" *ngIf="hasRequestedOTP">
+            <small>Didn't receive OTP ??. To resend</small><button mat-button color="primary">Click here</button>
+          </div>
           
           <div class="text-center">
-            <button *ngIf="!hasRequestedOTP" mat-flat-button color="primary"(click)="requestOTP()">Request OTP</button>
-            <button *ngIf="hasRequestedOTP" mat-flat-button color="primary"(click)="signIn()">Login</button>
+            <button [disabled]="loginForm.get('phone_number').invalid" *ngIf="!hasRequestedOTP" mat-flat-button color="primary"(click)="requestOTP()">Request OTP</button>
+            <button [disabled]="loginForm.get('otp').invalid" *ngIf="hasRequestedOTP" mat-flat-button color="primary"(click)="signIn()">Login</button>
           </div>
         </div>
       </div>

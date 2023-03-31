@@ -6,6 +6,7 @@ import {map, startWith} from 'rxjs/operators';
 
 import { nhost } from '../../@shared/global';
 import * as Query from '../../@shared/queries';
+import { SharedService } from 'src/app/@shared/shared.service';
 
 @Component({
   selector: 'app-user-home',
@@ -20,17 +21,26 @@ export class UserHomeComponent implements OnInit {
   filteredOptions: Observable<string[]>;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) { }
 
-  ngOnInit(): void {
-    this.getServices().then(res => {
-      this.options = this.servicesList;
-      this.filteredOptions = this.myControl.valueChanges.pipe(
-        startWith(''),
-        map((value: any) => value.length >= 2 ? this._filter(value || '') : []),
-      );
-    });
+  ngOnInit() {
+    this.sharedService.userData.subscribe(async (res) => {
+      console.log('User :', res);
+      if (res) {
+        const userProfileData = await this.isProfileCompleted(res.id);
+        console.log('userProfileData :', userProfileData);
+        if (userProfileData.length == 0) {
+          this.router.navigateByUrl('user/my-profile');
+          return;
+        } else {
+          this.getServices();
+        }
+      } else {
+        this.getServices();
+      }
+    })
   }
 
   async getServices() {
@@ -38,6 +48,11 @@ export class UserHomeComponent implements OnInit {
     if (data) {
       console.log(data);
       this.servicesList = [...(data.service_details)];
+      this.options = this.servicesList;
+      this.filteredOptions = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map((value: any) => value.length >= 2 ? this._filter(value || '') : []),
+      );
     }
   }
 
@@ -49,7 +64,9 @@ export class UserHomeComponent implements OnInit {
     // const filterValue = value.toLowerCase();
     return this.options.filter((option: any) => option.name.toLowerCase().includes(value.toLowerCase()));
   }
-}
 
-// return this.options.map((x: any) => x.name).filter(option =>
-//   option.toLowerCase().includes(value.toLowerCase()));
+  async isProfileCompleted(id) {
+    const { data, error } = await nhost.graphql.request(Query.IsUserProfileCompleted(id));
+    return [...(data.user_profiles)];
+  }
+}

@@ -86,11 +86,14 @@ export const GetUserProfile = (userId: any) => {
   return `query {
       user_profiles(where: {user_id: {_eq: "${userId}"}}) {
     		user {
-          email
+          id
           avatarUrl
           displayName
         }
+        name
+        email
         phone
+        is_profile_completed
     		user_addresses {
           id
           address_name
@@ -100,6 +103,17 @@ export const GetUserProfile = (userId: any) => {
           pincode
           is_preferred_address
         }
+      }
+    }`;
+};
+
+export const IsUserProfileCompleted = (userId: any) => {
+  return `query {
+      user_profiles(where: {user_id: {_eq: "${userId}"}}) {
+        user_id
+        name
+        phone
+        is_profile_completed
       }
     }`;
 };
@@ -172,3 +186,143 @@ export const UpdateVendorDetais = (user_id: any, details: any) => gql`  mutation
     }
   }
 }`
+
+export const mySubs = gql `subscription MySubscription {
+  user_addresses {
+    id
+    address_name
+    address
+    is_preferred_address
+    locality
+    city
+    pincode
+  }
+}`
+
+
+export const UpdateUserProfile = (profileData: any) => {
+  return gql `mutation {
+    update_user_profiles_by_pk(pk_columns: {user_id: "${profileData.user_id}"}, 
+    _set: {
+      name: "${profileData.name}",
+      phone: "${profileData.phone}",
+      email: "${profileData.email}"
+    }) {
+      name
+      phone
+      email
+    }
+  }`;
+};
+
+export const UpdateUserAddress = (addressData: any) => {
+  return `mutation UpdateAddressById {
+    update_user_addresses_by_pk(pk_columns: {id: "${addressData.address_id}"}, _set: {
+      user_id: "${addressData.user_id}",
+      address_name: "${addressData.address_name}",
+      address: "${addressData.address}",
+      city: "${addressData.city}",
+      locality: "${addressData.locality}",
+      pincode: "${addressData.pincode}",
+      is_preferred_address: "${addressData.is_preferred_address}"
+    }) {
+      id
+      user_id
+      address_name
+      address
+      city
+      locality
+      pincode
+      is_preferred_address
+    }
+  }`;
+};
+export const AddUserAddress = (addressData: any) => {
+  return `mutation addAddress {
+    insert_user_addresses(objects: {
+      user_id: "${addressData.user_id}",
+      address_name: "${addressData.address_name}",
+      address: "${addressData.address}",
+      city: "${addressData.city}",
+      locality: "${addressData.locality}",
+      pincode: "${addressData.pincode}",
+      is_preferred_address: "${addressData.is_preferred_address}"
+    }) {
+      returning {
+          address
+          address_name
+          city
+          id
+          is_preferred_address
+          locality
+          pincode
+          user_id
+      }
+    }
+  }`;
+};
+
+export const CreateUserProfile = (profileData: any) => {
+  return `mutation createUserProfile {
+     insert_user_profiles(objects: {
+      user_id: "${profileData.user_id}",
+      name: "${profileData.name}",
+      phone: "${profileData.phone}",
+      email: "${profileData.email}",
+      is_profile_completed: true,
+      user_addresses: {
+        data: {
+          address_name: "Home",
+          address: "${profileData.address}",
+          locality: "${profileData.locality}",
+          city: "${profileData.city}",
+          pincode: "${profileData.pincode}",
+          is_preferred_address: ${profileData.is_preferred_address}
+        }
+      }}) {
+     returning {
+      name
+      phone
+      is_profile_completed
+      user_id
+     }
+     }
+    }`;
+};
+
+export const ServiceBooking = (bookingData: any) => {
+  return `mutation {
+    insert_active_bookings(objects: {
+      user_id: "${bookingData.user_id}",
+      service_id: "${bookingData.service_id}",
+      service_date: "${bookingData.service_date}",
+      address: "${bookingData.address}",
+      city: "${bookingData.city}",
+      locality: "${bookingData.locality}",
+      pincode: "${bookingData.pincode}"
+    }) {
+      returning {
+        address
+        booking_date
+        booking_id
+        service_date
+        service_id
+        status
+        user_id
+        vendor_id
+        service_detail {
+          name
+          sid
+          is_active
+          is_available
+          description
+          duration
+          price
+          ratings
+          reviews_count
+          share_amount
+        }
+      }
+    }
+  }`;
+};

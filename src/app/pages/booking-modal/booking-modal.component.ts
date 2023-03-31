@@ -1,16 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { FormBuilder, Validators, FormGroup, ValidatorFn } from '@angular/forms';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import swal from 'sweetalert2';
 import * as Query from '../../@shared/queries';
 import { nhost } from '../../@shared/global';
-import { FormBuilder, Validators, FormGroup, ValidatorFn } from '@angular/forms';
-import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-booking-modal',
   templateUrl: './booking-modal.component.html',
   styleUrls: ['./booking-modal.component.scss']
 })
 export class BookingModalComponent implements OnInit {
-  @Input() serviceDetail: any;
   public selected: Date | null;
   public closeResult: string;
   public userProfile: any;
@@ -18,13 +19,16 @@ export class BookingModalComponent implements OnInit {
   public selected_address: any;
   public addressForm : FormGroup;
   public summaryForm : FormGroup;
+  public currentDate = Date.now();
+  @Input() serviceDetail: any;
   @Input() public modalData: any;
   
   constructor(
     private datePipe: DatePipe,
     private modalService: NgbModal,
     public activeModal: NgbActiveModal,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -85,8 +89,43 @@ export class BookingModalComponent implements OnInit {
     this.addressForm.controls['city'].setValue(formData.city);
     this.addressForm.controls['pincode'].setValue(formData.pincode);
   }
-  onBookingFormSubmit() {
-    console.log(this.addressForm.value);
-    console.log(this.serviceDetail);
+  async onBookingFormSubmit() {
+    const bookingData = {
+      user_id : nhost.auth.getUser().id,
+      service_id: this.serviceDetail.sid,
+      service_date: this.datePipe.transform(this.selected, 'yyyy-MM-dd'),
+      address: this.addressForm.getRawValue().address,
+      locality: this.addressForm.getRawValue().locality,
+      city: this.addressForm.getRawValue().city,
+      pincode: this.addressForm.getRawValue().pincode
+    }
+    console.log('BookingData :', bookingData);
+    const { data, error } = await nhost.graphql.request(Query.ServiceBooking(bookingData));
+    this.modalService.dismissAll();
+    this.showNotification(data ? 'success' : 'error');
+  }
+
+  showNotification(type: string) {
+    if (type == 'success') {
+      swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Your service has been booked successfully!',
+        // footer: '<a href="">Why do I have this issue?</a>'
+      })
+      .then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.router.navigateByUrl('user/home');
+        }
+      })
+    } else {
+      swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Something went wrong! Try again.',
+        // footer: '<a href="">Why do I have this issue?</a>'
+      })
+    }
   }
 }

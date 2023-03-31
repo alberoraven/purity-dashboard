@@ -41,7 +41,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: '**',
+    path: '',
     redirectTo: 'user'
   },
   { path: "privacy-policy", component: PrivacyPolicyComponent }

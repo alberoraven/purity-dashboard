@@ -12,6 +12,7 @@ import { SharedService } from 'src/app/@shared/shared.service';
 export class UserLayoutComponent implements OnInit {
   public user: any;
   public phone: any;
+  public nhost = nhost;
   public otp: any;
   public hasRequestedOTP = false;
   public closeResult: string;
@@ -34,7 +35,7 @@ export class UserLayoutComponent implements OnInit {
 
     setTimeout(() => {
       this.sharedService.userData.next(nhost.auth.getUser());
-    }, 100);
+    }, 500);
   }
 
  

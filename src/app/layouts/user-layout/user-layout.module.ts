@@ -22,6 +22,8 @@ import { ServiceDetailsComponent } from '../../pages/service-details/service-det
 import { ComponentsModule } from '../../components/components.module';
 import { LoginModalComponent } from '../../pages/login-modal/login-modal.component';
 import { BookingModalComponent } from '../../pages/booking-modal/booking-modal.component';
+import { MyProfileComponent } from '../../pages/my-profile/my-profile.component';
+import { AddNewAddressModalComponent } from '../../pages/add-new-address-modal/add-new-address-modal.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -47,11 +49,15 @@ import { BookingModalComponent } from '../../pages/booking-modal/booking-modal.c
     ServiceDetailsComponent,
     LoginModalComponent,
     BookingModalComponent,
+    MyProfileComponent,
+    AddNewAddressModalComponent,
   ], 
   exports: [
     MatFormFieldModule
   ],
-  providers: [DatePipe]
+  providers: [
+    DatePipe
+  ]
 })
 
 export class UserLayoutModule { }

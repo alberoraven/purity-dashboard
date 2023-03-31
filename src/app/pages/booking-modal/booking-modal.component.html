@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="modal-content bg-secondary">
         <div class="modal-header bg-white">
-            <h6 class="modal-title" id="modal-title-default">Choose Service Date</h6>
+            <h3 class="modal-title" id="modal-title-default">Choose Service Date</h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close('Cross click')">
               <span aria-hidden="true">×</span>
             </button>
@@ -14,7 +14,7 @@
       </div>
       <div class="modal-footer bg-white">
         <div class="text-center">
-            <button mat-flat-button color="primary" (click)="openAddressModal(address, selected)">Continue</button>
+            <button [disabled]="!selected" mat-flat-button color="primary" (click)="openAddressModal(address, selected)">Continue</button>
           </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
 <ng-template #address let-c="close" let-d="dismiss">
     <div class="modal-content bg-secondary">
       <div class="modal-header bg-white">
-        <h6 class="modal-title" id="modal-title-default">Select Address</h6>
+        <h3 class="modal-title" id="modal-title-default">Select Address</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d('Cross click')">
           <span aria-hidden="true">×</span>
         </button>
@@ -72,7 +72,7 @@
       </div>
       <div class="modal-footer bg-white">
         <!-- <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal" (click)="onBookingFormSubmit()">Close</button> -->
-        <button mat-flat-button color="primary" data-dismiss="modal" (click)="openSummaryModal(summary, address)">Continue</button>
+        <button [disabled]="addressForm.invalid" mat-flat-button color="primary" data-dismiss="modal" (click)="openSummaryModal(summary, address)">Continue</button>
         
     </div>
     </div>
@@ -91,13 +91,13 @@
             <h6 class=" heading-small text-muted mb-4">Service information</h6>
             <div class=" pl-lg-4">
                 <div class=" row">
-                    <div class=" col-lg-6">
+                    <div class=" col-md-6">
                         <div class=" form-group">
                             <label class=" form-control-label" for="input-username"> Service Name </label>
                             <p class="text-sm">{{serviceDetail?.name}}</p>
                         </div>
                     </div>
-                    <div class=" col-lg-6">
+                    <div class=" col-md-6">
                         <div class=" form-group">
                             <label class=" form-control-label" for="input-email"> Price </label>
                             <p class="text-sm">{{serviceDetail?.price}}</p>
@@ -105,16 +105,16 @@
                     </div>
                 </div>
                 <div class=" row">
-                    <div class=" col-lg-6">
+                    <div class=" col-md-6">
                         <div class=" form-group">
                             <label class=" form-control-label" for="input-first-name"> Service Date </label>
                             <p class="text-sm">{{selected | date: 'dd/MM/yyyy'}}</p>
                         </div>
                     </div>
-                    <div class=" col-lg-6">
+                    <div class=" col-md-6">
                         <div class=" form-group">
                             <label class=" form-control-label" for="input-last-name"> Booking Date </label>
-                            <p class="text-sm">{{selected | date: 'dd/MM/yyyy'}}</p>
+                            <p class="text-sm">{{currentDate | date: 'dd/MM/yyyy'}}</p>
                         </div>
                     </div>
                 </div>
@@ -142,19 +142,19 @@
                     </div>
                 </div>
                 <div class=" row">
-                    <div class=" col-lg-4">
+                    <div class=" col-md-4">
                         <div class=" form-group">
                             <label class=" form-control-label" for="input-city"> Locality </label>
                             <p class="text-sm">{{selected_address?.locality}}</p>
                         </div>
                     </div>
-                    <div class=" col-lg-4">
+                    <div class=" col-md-4">
                         <div class=" form-group">
                             <label class=" form-control-label" for="input-country"> City </label>
                             <p class="text-sm">{{selected_address?.city}}</p>
                         </div>
                     </div>
-                    <div class=" col-lg-4">
+                    <div class=" col-md-4">
                         <div class=" form-group">
                             <label class=" form-control-label" for="input-country"> Pincode </label>
                             <p class="text-sm">{{selected_address?.pincode}}</p>
