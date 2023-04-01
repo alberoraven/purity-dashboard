@@ -9,11 +9,16 @@ import * as Query from '../../@shared/queries';
 })
 export class MyBookingsComponent implements OnInit {
   public bookingsList: any;
+  public activeBookings: any;
+  public completedBookings: any;
+
   constructor() { }
 
   async ngOnInit(): Promise<void> {
     this.bookingsList = await this.getBookingsList(nhost.auth.getUser().id);
     console.log(this.bookingsList);
+    this.activeBookings = this.bookingsList.filter(res => res.booking_status.status_id < 5);
+    this.completedBookings = this.bookingsList.filter(res => res.booking_status.status_id == 5);
   }
 
   async getBookingsList(user_id) {
@@ -21,4 +26,19 @@ export class MyBookingsComponent implements OnInit {
     return [...(data.active_bookings)];
   }
 
+  getBookingStatusColor (status_id: number) {
+    let statusColor;
+    switch (status_id) {
+      case 1:
+        statusColor = 'blue'
+        break;
+      case 6:
+        statusColor = 'red'
+        break;
+      default:
+        statusColor = 'green'
+        break;
+    }
+    return statusColor;
+  }
 }

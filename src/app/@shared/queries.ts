@@ -362,3 +362,43 @@ export const GetUserBookingsList = (user_id: string) => {
       }
     }`;
 };
+
+export const GetServiceReview = (service_id: any) => {
+  return `query {
+    user_reviews(limit: 10, order_by: {id: desc}, where: {service_id: {_eq: "${service_id}"}}) {
+      service_id    
+      booking_id
+      rating
+      date
+      comment
+      user_profile {
+        user_id
+        name
+        user_pic
+      }
+    }
+  }`;
+};
+
+export const GetUserServiceReview = (user_id: any) => {
+  return `query {
+    user_reviews(limit: 10, order_by: {id: desc}, where: {user_id: {_eq: "${user_id}"}}) {
+          user_id
+          rating
+          date
+          comment
+          booking_id
+          user_profile {
+            user_pic
+            name
+          }
+          booking_id
+      		active_booking {
+            service_date
+            service_detail{
+              name
+            }
+          }
+      }
+  }`;
+};

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { nhost } from '../../@shared/global';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModalComponent } from '../../pages/login-modal/login-modal.component';
-import { getVendorDetails, GetUserProfile } from "../../@shared/queries";
+import { getVendorDetails, GetUserProfile, GetServiceReview } from "../../@shared/queries";
 import { BookingModalComponent } from '../booking-modal/booking-modal.component';
 
 @Component({
@@ -15,6 +15,7 @@ export class ServiceDetailsComponent implements OnInit {
 
   public user;
   public serviceDetail: any;
+  public userReviews: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,8 +62,9 @@ export class ServiceDetailsComponent implements OnInit {
       } else {
         this.user = nhost.auth.getUser();
       }
-    }
-    )
+    })
+    this.userReviews = await this.getUserReviews(this.serviceDetail.sid);
+    console.log(this.userReviews);
   }
   formatJSON(data) {
     let formattedData;
@@ -96,5 +98,10 @@ export class ServiceDetailsComponent implements OnInit {
       console.log(`Closed with: ${result}`);
     });
     modalRef.componentInstance.serviceDetail = this.serviceDetail;
+  }
+
+  async getUserReviews(service_id) {
+    const { data, error } = await nhost.graphql.request(GetServiceReview(service_id));
+    return [...(data.user_reviews)]; 
   }
 }

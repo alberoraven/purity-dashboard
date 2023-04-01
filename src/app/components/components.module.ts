@@ -7,6 +7,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ServiceCardWidgetComponent } from './service-card-widget/service-card-widget.component';
+import { UserReviewWidgetComponent } from './user-review-widget/user-review-widget.component';
 
 @NgModule({
   imports: [
@@ -18,13 +19,15 @@ import { ServiceCardWidgetComponent } from './service-card-widget/service-card-w
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    ServiceCardWidgetComponent
+    ServiceCardWidgetComponent,
+    UserReviewWidgetComponent
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    ServiceCardWidgetComponent
+    ServiceCardWidgetComponent,
+    UserReviewWidgetComponent
   ]
 })
 export class ComponentsModule { }
