@@ -4,9 +4,9 @@
   <span class="mask bg-gradient-danger opacity-8"></span>
   <!-- Header container -->
   <div class="container-fluid d-flex align-items-center">
-    <div class="row">
+    <div class="row header-text">
       <div class="col-lg-7 col-md-10">
-        <h1 class="display-2 text-white">{{user?.displayName}}</h1>
+        <h1 class="display-2 text-white">My Profile</h1>
         <!-- <a href="#!" class="btn btn-info">Edit profile</a> -->
       </div>
     </div>
@@ -119,13 +119,13 @@
                       [value]=user?.locality disabled>
                   </div>
                 </div>
-                <!-- <div class="col-lg-4">
+                <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-country">Postal code</label>
+                    <label class="form-control-label" for="input-country">Pincode</label>
                     <input type="number" id="input-postal-code" class="form-control form-control-alternative"
-                      placeholder="Postal code">
+                      placeholder="Pincode" [value]=user?.pincode disabled>
                   </div>
-                </div> -->
+                </div>
               </div>
             </div>
           </form>

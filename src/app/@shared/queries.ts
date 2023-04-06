@@ -23,24 +23,23 @@ export const GetOverallList = gql`query {
 
 export const vendorList = gql`query {
   vendor_profiles {
-    email
-    name
-    locality
     user_id
-    city
-    service_list
-    is_vendor_available
-    is_available
-    address
-    is_profile_completed
-    wallet_money
+    name
     phone
+    email
+    address
+    locality
+    city
     pincode
+    wallet_money
+    is_vendor_available
+    is_profile_completed
   }
 }`
 export const getVendorDetails = (userId: any) => gql`query {
   vendor_profiles(where: {user_id: {_eq: "${userId}"}}) {
     email
+    pincode
     name
     locality
     phone
@@ -52,21 +51,58 @@ export const getVendorDetails = (userId: any) => gql`query {
   }
 }
 `
-export const UnAssignedUsers = gql`query {
-  active_bookings(where: {status: {_eq: "1"}}order_by: {booking_id: asc}) {
+export const UnAssignedServices = gql`query {
+  active_bookings(where: {status: {_lte: "4"}}order_by: {booking_id: desc}) {
     user_profile {
       email
       name
       user_id
     }
+    user_address {
+      address
+      locality
+    }
+    vendor_profile {
+      name
+      user_id
+    }
     booking_id
+    booking_date
+    booking_status {
+      status_id
+      name
+    }
+    service_date
+    service_detail {
+      sid
+      name
+    }
+  }
+}`
+
+export const CompletedServices = gql`query {
+  active_bookings(where: {status: {_gte: "5"}}order_by: {booking_id: desc}) {
+    user_profile {
+      email
+      name
+      user_id
+    }
+    vendor_profile {
+      name
+      user_id
+    }
+    booking_id
+    booking_status {
+      status_id
+      name
+    }
     service_date
     booking_date
     service_detail {
       name
     }
   }
-  }`
+}`
 
 export const UpdateUser = (booking_id: any, vendor_id: any) => gql`  mutation assignVendor {
   update_active_bookings_by_pk(pk_columns: {booking_id: ${booking_id}}, _set: {status: "2", vendor_id: "${vendor_id}"}) {
@@ -74,9 +110,10 @@ export const UpdateUser = (booking_id: any, vendor_id: any) => gql`  mutation as
   }
 }`
 
-export const addVendor = (vendorEmail: any) => gql`mutation MyMutation {
-  insert_vendors_list(objects: {email: "${vendorEmail}"}) {
+export const addVendor = (phoneNumber: any) => gql`mutation MyMutation {
+  insert_vendors_list(objects: {phoneNumber: "${phoneNumber}"}) {
     returning {
+      phoneNumber
       email
     }
   }
@@ -114,6 +151,19 @@ export const IsUserProfileCompleted = (userId: any) => {
         name
         phone
         is_profile_completed
+      }
+    }`;
+};
+
+export const GetVendorServices = (vendorId: any) => {
+  return `query {
+      vendor_services(where: {vendor_id: {_eq: "${vendorId}"}}) {
+        id
+        service_detail {
+          sid
+          name
+        }
+        is_available
       }
     }`;
 };

@@ -20,8 +20,8 @@ export class UserProfileComponent implements OnInit {
 
   async ngOnInit() {
     this.route.queryParams.subscribe(async params => {
-      if (params.prop) {
-        const { data, error } = await nhost.graphql.request(getVendorDetails(params.prop))
+      if (params.id) {
+        const { data, error } = await nhost.graphql.request(getVendorDetails(params.id))
         if (data) {
           this.user = {
             "displayName": data.user.displayName,
@@ -31,6 +31,7 @@ export class UserProfileComponent implements OnInit {
             "locality": data.vendor_profiles[0].locality,
             "email": data.vendor_profiles[0].email,
             "phoneNumber": data.vendor_profiles[0].phone,
+            "pincode": data.vendor_profiles[0].pincode,
             "roles": "Vendor"
           }
         }
@@ -45,6 +46,7 @@ export class UserProfileComponent implements OnInit {
             "locality": data.user_profiles[0]?.user_addresses[0]?.locality,
             "email": data.user_profiles[0].user.email,
             "phoneNumber": data.user_profiles[0].phone,
+            "pincode": data.user_profiles[0]?.user_addresses[0]?.pincode,
             "roles": "User"
           }
 

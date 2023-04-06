@@ -16,20 +16,25 @@ export interface DialogData {
 export class VendorListTableComponent implements OnInit {
 
   public vendorList: any;
-  vendor = { email: '' };
+  vendor = { phone: '' };
 
   constructor(
     public elRef: ElementRef,
     public dialog: MatDialog
   ) { }
 
-  ngOnInit() {
-    this.getVendorList()
+  async ngOnInit() {
+    this.vendorList = await this.getVendorList();
+    // this.vendorList[0].vendor_services = await this.getVendorServices(this.vendorList[0].user_id);
+    this.vendorList.forEach(async element => {
+      element.vendor_services = await this.getVendorServices(element.user_id);
+    });
+    console.log(this.vendorList);
   }
 
   async submit(form: NgForm) {
     if (form.valid) {
-      const { data, error } = await nhost.graphql.request(Query.addVendor(form.value.Email))
+      const { data, error } = await nhost.graphql.request(Query.addVendor(form.value.phone))
       if (data) {
         this.elRef.nativeElement.querySelector(".text-success").innerHTML = "Successfully added !!";
         this.elRef.nativeElement.querySelector(".error").style.display = "none";
@@ -66,7 +71,13 @@ export class VendorListTableComponent implements OnInit {
   async getVendorList() {
     const { data, error } = await nhost.graphql.request(Query.vendorList)
     if (data) {
-      this.vendorList = [...(data.vendor_profiles)];
+      return [...(data.vendor_profiles)];
+    }
+  }
+  async getVendorServices(vendorId) {
+    const { data, error } = await nhost.graphql.request(Query.GetVendorServices(vendorId))
+    if (data) {
+      return [...(data.vendor_services)];
     }
   }
 }
