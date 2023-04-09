@@ -8,11 +8,11 @@ import * as Query from '../../@shared/queries';
 import { nhost } from '../../@shared/global';
 
 @Component({
-  selector: 'app-booking-details',
-  templateUrl: './booking-details.component.html',
-  styleUrls: ['./booking-details.component.scss']
+  selector: 'app-completed-services',
+  templateUrl: './completed-services.component.html',
+  styleUrls: ['./completed-services.component.scss']
 })
-export class BookingDetails implements OnInit {
+export class CompletedServices implements OnInit {
   public completedServices;
   public dataSource;
   public displayedColumns = [];

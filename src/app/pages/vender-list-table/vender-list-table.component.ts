@@ -80,6 +80,13 @@ export class VendorListTableComponent implements OnInit {
       return [...(data.vendor_services)];
     }
   }
+  async deleteVendor(id) {
+    const { data, error } = await nhost.graphql.request(Query.DeleteVendor(id))
+    if (data) {
+      this.ngOnInit();
+      // return [...(data.delete_vendor_profiles_by_pk)];
+    }
+  }
 }
 
 @Component({

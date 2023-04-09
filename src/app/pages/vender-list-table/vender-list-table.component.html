@@ -106,9 +106,9 @@
                 <th scope="col">Phone</th>
                 <th scope="col">Email</th>
                 <th scope="col">Locality</th>
-                <th scope="col">wallet Money</th>
+                <th scope="col">Wallet Money</th>
                 <th scope="col">Services</th>
-                <th scope="col">Edit</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -134,9 +134,18 @@
                   </ul>
                 </td>
                 <td>
-                  <button mat-icon-button (click)='openDialog(item)'><i class="fa fa-pencil"
+                  <div class="nav-item" ngbDropdown x-placement="bottom-right">
+                    <a class="nav-link nav-link-icon" role="button" ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)='openDialog(item)'>Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteVendor(item.user_id)">Delete</a>
+                    </div>
+                  </div>
+                  <!-- <button mat-icon-button (click)='openDialog(item)'><i class="fa fa-pencil"
                       style="font-size:20px;"></i>
-                  </button>
+                  </button> -->
                 </td>
               </tr>
             </tbody>

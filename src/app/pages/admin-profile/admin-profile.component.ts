@@ -6,11 +6,11 @@ import { getVendorDetails, GetUserProfile } from "../../@shared/queries";
 
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  selector: 'app-admin-profile',
+  templateUrl: './admin-profile.component.html',
+  styleUrls: ['./admin-profile.component.scss']
 })
-export class UserProfileComponent implements OnInit {
+export class AdminProfileComponent implements OnInit {
 
   public user;
 

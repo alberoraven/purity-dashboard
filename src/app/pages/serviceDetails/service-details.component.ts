@@ -23,7 +23,7 @@ export class ServiceDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getServiceDetailsList()
+    this.getServiceDetailsList();
   }
 
   openDialog(item): void {
@@ -69,7 +69,8 @@ export class ServiceDetailDialogue {
   serviceData: any;
 
   ngOnInit() {
-    this.serviceData = this.data.details
+    this.serviceData = this.data.details;
+    console.log(this.serviceData);
   }
 
   async onClick() {

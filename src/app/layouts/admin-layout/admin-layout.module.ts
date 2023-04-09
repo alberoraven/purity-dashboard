@@ -19,9 +19,9 @@ import { MaterialExampleModule } from '../../material.module';
 import { GraphQLModule } from '../../@shared/graphql.module';
 import { IconsComponent } from '../../pages/icons/icons.component';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
-import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
-import { BookingDetails } from '../../pages/bookingDetails/booking-details.component';
-import { VendorListComponent, VendorAddDialogue } from '../../pages/vendor-list/vendor-list.component';
+import { AdminProfileComponent } from '../../pages/admin-profile/admin-profile.component';
+import { CompletedServices } from '../../pages/completed-services/completed-services.component';
+import { NewBookingsComponent, VendorAddDialogue } from '../../pages/new-bookings/new-bookings.component';
 import { VendorListDialogue, VendorListTableComponent } from '../../pages/vender-list-table/vender-list-table.component';
 import { ServiceDetailDialogue, ServiceDetailsComponent } from '../../pages/serviceDetails/service-details.component';
 import { OfferDetailDialogue, OfferDetailsComponent } from '../../pages/offerDetails/offer-details.component';
@@ -48,8 +48,8 @@ import { OfferDetailDialogue, OfferDetailsComponent } from '../../pages/offerDet
   ],
   declarations: [
     DashboardComponent,
-    UserProfileComponent,
-    BookingDetails,
+    AdminProfileComponent,
+    CompletedServices,
     VendorListTableComponent,
     ServiceDetailsComponent,
     ServiceDetailDialogue,
@@ -58,8 +58,9 @@ import { OfferDetailDialogue, OfferDetailsComponent } from '../../pages/offerDet
     OfferDetailDialogue,
     IconsComponent,
     VendorAddDialogue,
-    VendorListComponent,
-  ], exports: [
+    NewBookingsComponent,
+  ], 
+  exports: [
     MatFormFieldModule
   ]
 })

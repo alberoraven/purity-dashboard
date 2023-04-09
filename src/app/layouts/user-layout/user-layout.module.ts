@@ -22,7 +22,7 @@ import { ServiceDetailsComponent } from '../../pages/service-details/service-det
 import { ComponentsModule } from '../../components/components.module';
 import { LoginModalComponent } from '../../pages/login-modal/login-modal.component';
 import { BookingModalComponent } from '../../pages/booking-modal/booking-modal.component';
-import { MyProfileComponent } from '../../pages/my-profile/my-profile.component';
+import { ProfileComponent } from '../../pages/profile/profile.component';
 import { AddNewAddressModalComponent } from '../../pages/add-new-address-modal/add-new-address-modal.component';
 import { MyBookingsComponent } from '../../pages/my-bookings/my-bookings.component';
 @NgModule({
@@ -50,7 +50,7 @@ import { MyBookingsComponent } from '../../pages/my-bookings/my-bookings.compone
     ServiceDetailsComponent,
     LoginModalComponent,
     BookingModalComponent,
-    MyProfileComponent,
+    ProfileComponent,
     AddNewAddressModalComponent,
     MyBookingsComponent,
   ], 

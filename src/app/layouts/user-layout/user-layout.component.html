@@ -36,7 +36,7 @@
               <i class="ni ni-istanbul"></i>
               <span>Home</span>
             </a>
-            <a routerLinkActive="active" [routerLink]="['/user/my-profile']" class="dropdown-item">
+            <a routerLinkActive="active" [routerLink]="['/user/profile']" [queryParams]="{id: user?.id}" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
             </a>

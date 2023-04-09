@@ -169,7 +169,7 @@ export const GetVendorServices = (vendorId: any) => {
 };
 
 export const serviceDetailsList = `query {
-  service_details {
+  service_details(order_by: {sid: asc}) {
     description
     duration
     name
@@ -193,6 +193,23 @@ export const InsertServiceDetails = (details: any) => gql`  mutation {
   insert_service_details(objects: {description: "${details.description}", duration: "${details.duration}", name: "${details.name}", price: "${details.price}", share_amount: "${details.share_amount}", is_active: true}) {
     returning {
       name
+    }
+  }
+}`
+
+export const DeleteVendor = (user_id) => gql `mutation {
+  delete_vendor_profiles_by_pk(user_id: "${user_id}") {
+    user_id
+    name
+  }
+}`
+
+export const GetAutoSuggestedVendor = (data: any) => `query MyQuery {
+  vendor_services(where: {service_id: {_eq: "${data.service_id}"}, vendor_profile: {locality: {_eq: "${data.locality}"}}}) {
+    vendor_profile {
+      user_id
+      name
+      phone
     }
   }
 }`

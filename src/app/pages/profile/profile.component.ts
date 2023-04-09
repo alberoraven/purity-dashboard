@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { nhost } from '../../@shared/global';
+import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddNewAddressModalComponent } from '../add-new-address-modal/add-new-address-modal.component';
 import { SharedService } from 'src/app/@shared/shared.service';
-import * as Query from '../../@shared/queries';
 import locations from 'src/assets/data/locality.json';
+import * as Query from '../../@shared/queries';
+import { nhost } from '../../@shared/global';
 
 @Component({
-  selector: 'app-my-profile',
-  templateUrl: './my-profile.component.html',
-  styleUrls: ['./my-profile.component.scss']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class MyProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit {
   public userProfile: any;
   public profileForm : FormGroup;
   public addNewAddressForm : FormGroup;
@@ -21,17 +22,21 @@ export class MyProfileComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private sharedService: SharedService,
+    private route : ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.createProfileForm();
-    this.localities = locations.locations;
-    this.sharedService.userData.subscribe(async res => {
-      this.userProfile = await this.getUserProfile(res.id);
+    this.route.queryParams.subscribe(async params => {
+      this.createProfileForm(params?.id);
+      this.localities = locations.locations;
+      this.userProfile = await this.getUserProfile(params?.id);
       if (this.userProfile) {
         this.setProfileFormValue(this.userProfile);
       }
     });
+    // this.sharedService.userData.subscribe(async res => {
+      
+    // });
   }
 
   async getUserProfile(id) {
@@ -39,12 +44,12 @@ export class MyProfileComponent implements OnInit {
     return [...(data.user_profiles)][0];
   }
 
-  createProfileForm() {
+  createProfileForm(userId) {
     this.profileForm = this.formBuilder.group({
-      user_id: [{value: nhost.auth.getUser().id, disabled: true}, [Validators.required]],
+      user_id: [{value: userId, disabled: true}, [Validators.required]],
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.minLength(3), Validators.email]],
-      phone: [{value: nhost.auth.getUser().phoneNumber, disabled: true}, [Validators.required, Validators.pattern('^[1-9][0-9]{5}$')]],
+      phone: [{value: '', disabled: true}, [Validators.required, Validators.pattern('^[1-9][0-9]{5}$')]],
       address_id: ['', [Validators.required]],
       address_name: ['', [Validators.required, Validators.minLength(3)]],
       address: ['', [Validators.required, Validators.minLength(3)]],

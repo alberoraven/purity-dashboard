@@ -10,9 +10,9 @@ declare interface RouteInfo {
 export const ADMINROUTES: RouteInfo[] = [
   { path: '/admin/dashboard', title: 'Dashboard', icon: 'ni-tv-2 text-primary', class: '' },
   // { path: '/icons', title: 'Icons', icon: 'ni-planet text-blue', class: '' },
-  { path: '/admin/assign-a-vendor', title: 'New Bookings', icon: 'ni-pin-3 text-orange', class: '' },
-  { path: '/admin/user-profile', title: 'User profile', icon: 'ni-single-02 text-yellow', class: '' },
-  { path: '/admin/bookingList', title: 'Completed Services', icon: 'ni-bullet-list-67 text-red', class: '' },
+  { path: '/admin/new-bookings', title: 'New Bookings', icon: 'ni-pin-3 text-orange', class: '' },
+  // { path: '/admin/user-profile', title: 'User profile', icon: 'ni-single-02 text-yellow', class: '' },
+  { path: '/admin/completed-services', title: 'Completed Services', icon: 'ni-bullet-list-67 text-red', class: '' },
   { path: '/admin/service-details', title: 'Service Details List', icon: 'ni-circle-08 text-pink', class: '' },
   { path: '/admin/offer-details', title: 'Offer Details List', icon: 'ni-planet text-blue', class: '' },
   { path: '/admin/vendor-List', title: 'VendorList', icon: 'ni-circle-08 text-pink', class: '' },

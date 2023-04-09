@@ -120,7 +120,7 @@
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
                 <td mat-cell *matCellDef="let element">
-                  <a [routerLink]="['/admin/user-profile']" [queryParams]="{user: element.customer_id}" >{{element.customer_name}}</a>
+                  <a [routerLink]="['/user/profile']" [queryParams]="{id: element.customer_id}" >{{element.customer_name}}</a>
                 </td>
               </ng-container>
               <ng-container matColumnDef="phone">
@@ -134,7 +134,7 @@
               <ng-container matColumnDef="vendor_name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Vendor Name </th>
                 <td mat-cell *matCellDef="let element"> 
-                  <a *ngIf="element.vendor_name" [routerLink]="['/admin/user-profile']" [queryParams]="{id: element.vendor_id}">
+                  <a *ngIf="element.vendor_name" [routerLink]="['/admin/admin-profile']" [queryParams]="{id: element.vendor_id}">
                     {{element.vendor_name}}
                   </a>
                 </td>
