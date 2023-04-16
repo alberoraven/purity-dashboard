@@ -35,7 +35,7 @@
         <div class="card-body pt-8 pt-md-8">
           <div class="text-center">
             <h3>
-              {{user?.displayName}}
+              {{data?.name}}
             </h3>
           </div>
         </div>
@@ -46,7 +46,7 @@
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
             <div class="col-8">
-              <h3 class="mb-0">{{user?.displayName}}'s account</h3>
+              <h3 class="mb-0">{{data?.name}}'s account</h3>
             </div>
             <!-- <div class="col-4 text-right">
               <a href="#!" class="btn btn-sm btn-primary">Settings</a>
@@ -54,15 +54,15 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
+          <form *ngIf="data">
             <h6 class="heading-small text-muted mb-4">User information</h6>
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">Username</label>
-                    <input type="text" *ngIf="user?.displayName" id="input-username"
-                      class="form-control form-control-alternative" placeholder="Username" [value]=user?.displayName
+                    <input type="text" id="input-username"
+                      class="form-control form-control-alternative" placeholder="Username" [value]=data?.name
                       disabled>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Email address</label>
                     <input type="email" id="input-email" class="form-control form-control-alternative"
-                      [value]=user?.email disabled>
+                      [value]=data?.email disabled>
                   </div>
                 </div>
               </div>
@@ -79,27 +79,39 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">Phone</label>
                     <input type="text" id="input-first-name" class="form-control form-control-alternative"
-                      placeholder="Phone" [value]=user?.phoneNumber disabled>
+                      placeholder="Phone" [value]=data?.phone disabled>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Role</label>
                     <input type="text" id="input-last-name" class="form-control form-control-alternative"
-                      [value]=user?.roles disabled>
+                      [value]="'vendor'" disabled>
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <label class="form-control-label" for="input-first-name">Wallet Money</label>
+                  <input type="text" id="input-first-name" class="form-control form-control-alternative"
+                    placeholder="Phone" [value]=data?.wallet_money disabled>
+                </div>
+                <div class="col-lg-6">
+                  <label class="form-control-label" for="input-first-name">Is Profile Completed</label>
+                  <input type="text" id="input-first-name" class="form-control form-control-alternative"
+                    placeholder="Phone" [value]=data?.is_profile_completed disabled>
+                </div>
+              </div>
             </div>
-            <hr class="my-4" *ngIf="user?.address">
+            <hr class="my-4" *ngIf="data?.address">
             <!-- Address -->
-            <h6 class="heading-small text-muted mb-4" *ngIf="user?.address">Contact information</h6>
-            <div class="pl-lg-4" *ngIf="user?.address">
+            <h6 class="heading-small text-muted mb-4" *ngIf="data?.address">Contact information</h6>
+            <div class="pl-lg-4" *ngIf="data?.address">
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Address</label>
-                    <input id="input-address" class="form-control form-control-alternative" [value]=user?.address
+                    <input id="input-address" class="form-control form-control-alternative" [value]=data?.address
                       type="text" disabled>
                   </div>
                 </div>
@@ -108,7 +120,7 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-city">City</label>
-                    <input type="text" id="input-city" class="form-control form-control-alternative" [value]=user?.city
+                    <input type="text" id="input-city" class="form-control form-control-alternative" [value]=data?.city
                       disabled>
                   </div>
                 </div>
@@ -116,14 +128,28 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-locality">Locality</label>
                     <input type="text" id="input-country" class="form-control form-control-alternative"
-                      [value]=user?.locality disabled>
+                      [value]=data?.locality disabled>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-country">Pincode</label>
                     <input type="number" id="input-postal-code" class="form-control form-control-alternative"
-                      placeholder="Pincode" [value]=user?.pincode disabled>
+                      placeholder="Pincode" [value]=data?.pincode disabled>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4">
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4" *ngIf="data?.vendor_services">Service information</h6>
+            <div class="pl-lg-4" *ngIf="data?.vendor_services">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div *ngFor="let service of data?.vendor_services">
+                      <mat-checkbox class="example-margin" checked disabled>{{service.service_detail.name}}</mat-checkbox>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -45,9 +45,18 @@ export const getVendorDetails = (userId: any) => gql`query {
     phone
     address
     city
-  } user(id: "${userId}"){
-    displayName
-    avatarUrl
+    wallet_money
+    is_profile_completed
+    user {
+    	displayName
+    	avatarUrl
+  	}
+    vendor_services {
+      service_detail {
+        sid
+        name
+      }
+  	}
   }
 }
 `
@@ -197,10 +206,52 @@ export const InsertServiceDetails = (details: any) => gql`  mutation {
   }
 }`
 
+export const InsertVendorService = (serviceData: any) => gql`  mutation {
+  insert_vendor_services(objects: {is_available: true, service_id: "${serviceData.service_id}", vendor_id: "${serviceData.vendor_id}"}) {
+    affected_rows
+  }
+}`
+
+export const InsertNewVendor = (vendorData: any) => gql`  mutation {
+  insertUser(object: {displayName: "${vendorData.displayName}", email: "${vendorData.email}",locale: "en", phoneNumber: "+91${vendorData.phoneNumber}", phoneNumberVerified: true, defaultRole: "vendor"}) {
+    id
+    displayName
+    phoneNumber
+    email
+  }
+}`
+
+export const InsertNewVendorProfile = (vendorData: any) => gql`  mutation {
+  insert_vendor_profiles(objects: {
+    user_id: "${vendorData.user_id}",
+    name: "${vendorData.name}",
+    email: "${vendorData.email}",
+    phone: "+91${vendorData.phone}",
+    address: "${vendorData.address}",
+    locality: "${vendorData.locality}",
+    city: "${vendorData.city}",
+    pincode: "${vendorData.pincode}",
+    wallet_money: "${vendorData.wallet_money}",
+    is_profile_completed: "${vendorData.is_profile_completed}",
+  }) {
+    returning {
+      user_id
+      name
+      phone
+    }
+  }
+}`
+
 export const DeleteVendor = (user_id) => gql `mutation {
   delete_vendor_profiles_by_pk(user_id: "${user_id}") {
     user_id
     name
+  }
+}`
+
+export const DeleteVendorServices = (user_id) => gql `mutation {
+  delete_vendor_services(where: {vendor_id: {_eq: "${user_id}"}}) {
+    affected_rows
   }
 }`
 

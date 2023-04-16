@@ -114,7 +114,7 @@
             <tbody>
               <tr *ngFor="let item of vendorList;">
                 <th scope="row">
-                  <a [routerLink]="['/admin/user-profile']" [queryParams]="{id: item.user_id}">{{item.name}}</a>
+                  <a [routerLink]="['/admin/vendor-profile']" [queryParams]="{id: item.user_id}">{{item.name}}</a>
                 </th>
                 <td>
                   {{item.phone}}
@@ -140,7 +140,7 @@
                     </a>
                     <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
                       <a class="dropdown-item" href="javascript:void(0)" (click)='openDialog(item)'>Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteVendor(item.user_id)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteVendorServices(item.user_id)">Delete</a>
                     </div>
                   </div>
                   <!-- <button mat-icon-button (click)='openDialog(item)'><i class="fa fa-pencil"
@@ -154,7 +154,7 @@
       </div>
     </div>
   </div>
-  <div class="col" style="padding-top: 2rem;">
+  <!-- <div class="col" style="padding-top: 2rem;">
     <mat-accordion class="example-headers-align">
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
@@ -180,5 +180,5 @@
       </mat-expansion-panel>
 
     </mat-accordion>
-  </div>
+  </div> -->
 </div>

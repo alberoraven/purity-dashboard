@@ -4,11 +4,11 @@ import { MyBookingsComponent } from 'src/app/pages/my-bookings/my-bookings.compo
 import { ProfileComponent } from 'src/app/pages/profile/profile.component';
 import { ServiceDetailsComponent } from 'src/app/pages/service-details/service-details.component';
 import { UserHomeComponent } from 'src/app/pages/user-home/user-home.component';
-import { AdminProfileComponent } from 'src/app/pages/admin-profile/admin-profile.component';
+// import { AdminProfileComponent } from 'src/app/pages/vendor-profile/admin-profile.component';
 
 export const UserLayoutRoutes: Routes = [
     { path: 'home', component: UserHomeComponent },
-    { path: 'user-profile', component: AdminProfileComponent },
+    // { path: 'user-profile', component: AdminProfileComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'my-bookings', component: MyBookingsComponent},
     { path: 'service-details/:id', component: ServiceDetailsComponent },

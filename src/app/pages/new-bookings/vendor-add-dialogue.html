@@ -51,5 +51,5 @@
 </div>
 <hr/>
 <div mat-dialog-actions>
-    <button mat-flat-button color="primary" (click)="assignVendor()">AssignVendor</button>
+    <button mat-flat-button color="primary" (click)="assignVendor()" [disabled]="!vendorControl.getRawValue()">AssignVendor</button>
 </div>

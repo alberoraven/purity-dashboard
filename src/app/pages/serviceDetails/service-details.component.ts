@@ -38,11 +38,13 @@ export class ServiceDetailsComponent implements OnInit {
         const { data, error } = await nhost.graphql.request(Query.UpdateServiceDetails(result.sid, result))
         if (data) {
           // console.log(data);
+          this.ngOnInit();
         }
       } else if (!result.sid) {
         const { data, error } = await nhost.graphql.request(Query.InsertServiceDetails(result))
         if (data) {
           // console.log(data);
+          this.ngOnInit();
         }
       }
     });
