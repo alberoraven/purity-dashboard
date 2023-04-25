@@ -39,12 +39,12 @@ export const vendorList = gql`query {
 export const getVendorDetails = (userId: any) => gql`query {
   vendor_profiles(where: {user_id: {_eq: "${userId}"}}) {
     email
-    pincode
     name
     locality
     phone
     address
     city
+    pincode
     wallet_money
     is_profile_completed
     user {
@@ -146,7 +146,6 @@ export const GetUserProfile = (userId: any) => {
           address
           locality
           city
-          pincode
           is_preferred_address
         }
       }
@@ -313,7 +312,6 @@ export const mySubs = gql `subscription MySubscription {
     is_preferred_address
     locality
     city
-    pincode
   }
 }`
 
@@ -341,7 +339,6 @@ export const UpdateUserAddress = (addressData: any) => {
       address: "${addressData.address}",
       city: "${addressData.city}",
       locality: "${addressData.locality}",
-      pincode: "${addressData.pincode}",
       is_preferred_address: "${addressData.is_preferred_address}"
     }) {
       id
@@ -350,7 +347,6 @@ export const UpdateUserAddress = (addressData: any) => {
       address
       city
       locality
-      pincode
       is_preferred_address
     }
   }`;
@@ -363,8 +359,7 @@ export const AddUserAddress = (addressData: any) => {
       address: "${addressData.address}",
       city: "${addressData.city}",
       locality: "${addressData.locality}",
-      pincode: "${addressData.pincode}",
-      is_preferred_address: "${addressData.is_preferred_address}"
+      is_preferred_address: ${addressData.is_preferred_address}
     }) {
       returning {
           address
@@ -373,7 +368,6 @@ export const AddUserAddress = (addressData: any) => {
           id
           is_preferred_address
           locality
-          pincode
           user_id
       }
     }
@@ -394,7 +388,6 @@ export const CreateUserProfile = (profileData: any) => {
           address: "${profileData.address}",
           locality: "${profileData.locality}",
           city: "${profileData.city}",
-          pincode: "${profileData.pincode}",
           is_preferred_address: ${profileData.is_preferred_address}
         }
       }}) {
@@ -415,13 +408,10 @@ export const ServiceBooking = (bookingData: any) => {
       service_id: "${bookingData.service_id}",
       service_date: "${bookingData.service_date}",
       address_id: "${bookingData.address_id}",
-      address: "${bookingData.address}",
-      city: "${bookingData.city}",
-      locality: "${bookingData.locality}",
-      pincode: "${bookingData.pincode}"
+      otp: "${bookingData.otp}"
     }) {
       returning {
-        address
+        address_id
         booking_date
         booking_id
         service_date
@@ -429,17 +419,10 @@ export const ServiceBooking = (bookingData: any) => {
         status
         user_id
         vendor_id
+        otp
         service_detail {
           name
           sid
-          is_active
-          is_available
-          description
-          duration
-          price
-          ratings
-          reviews_count
-          share_amount
         }
       }
     }
@@ -453,6 +436,7 @@ export const GetUserBookingsList = (user_id: string) => {
         booking_date
         service_date
         user_id
+        otp
         booking_status {
           status_id
           name
@@ -463,7 +447,6 @@ export const GetUserBookingsList = (user_id: string) => {
           address
           locality
           city
-          pincode
         }
         vendor_profile {
           user_id

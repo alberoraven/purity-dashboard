@@ -55,7 +55,7 @@ export class ProfileComponent implements OnInit {
       address: ['', [Validators.required, Validators.minLength(3)]],
       locality: ['', [Validators.required, Validators.minLength(3)]],
       city: [{value: 'Chennai', disabled: true}, [Validators.required, Validators.minLength(3)]],
-      pincode: ['', [Validators.required, Validators.pattern('^[1-9][0-9]{5}$')]],
+      // pincode: ['', [Validators.required, Validators.pattern('^[1-9][0-9]{5}$')]],
       is_preferred_address: [false, [Validators.required]]
     });
   }
@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit {
     this.profileForm.controls['address'].setValue(addressObj.address);
     this.profileForm.controls['locality'].setValue(addressObj.locality);
     this.profileForm.controls['city'].setValue(addressObj.city);
-    this.profileForm.controls['pincode'].setValue(addressObj.pincode);
+    // this.profileForm.controls['pincode'].setValue(addressObj.pincode);
     this.profileForm.controls['is_preferred_address'].setValue(addressObj.is_preferred_address);
   }
   selectAddress(addressName) {
@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit {
     this.profileForm.controls['address'].setValue(addressObj.address);
     this.profileForm.controls['locality'].setValue(addressObj.locality);
     this.profileForm.controls['city'].setValue(addressObj.city);
-    this.profileForm.controls['pincode'].setValue(addressObj.pincode);
+    // this.profileForm.controls['pincode'].setValue(addressObj.pincode);
     this.profileForm.controls['is_preferred_address'].setValue(addressObj.is_preferred_address);
   }
   
@@ -108,7 +108,7 @@ export class ProfileComponent implements OnInit {
         address: data.address,
         locality: data.locality,
         city: data.city,
-        pincode: data.pincode,
+        // pincode: data.pincode,
         is_preferred_address: data.is_preferred_address
       };
       const userObj = {

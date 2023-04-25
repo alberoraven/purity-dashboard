@@ -6,18 +6,22 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
 import swal from 'sweetalert2';
 import * as Query from '../../@shared/queries';
 import { nhost } from '../../@shared/global';
+import locations from 'src/assets/data/locality.json';
+
 @Component({
   selector: 'app-booking-modal',
   templateUrl: './booking-modal.component.html',
   styleUrls: ['./booking-modal.component.scss']
 })
 export class BookingModalComponent implements OnInit {
+  public localities: any;
   public selected: Date | null;
   public closeResult: string;
   public userProfile: any;
   public address_name: string;
   public selected_address: any;
   public addressForm : FormGroup;
+  public addNewAddressForm : FormGroup;
   public summaryForm : FormGroup;
   public currentDate = Date.now();
   @Input() serviceDetail: any;
@@ -32,27 +36,28 @@ export class BookingModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.localities = locations.locations;
     this.getUserProfile();
-    this.createAddressForm();
-    console.log(this.serviceDetail);
   }
 
-  openDateModal(content, data) {
-    console.log(data);
+  openDateModal(modalContentRef) {
     this.activeModal.close('done');
-    const modalRef = this.modalService.open(content, { windowClass: 'modal-mini', size: 'md', centered: true });
+    this.modalService.open(modalContentRef, { windowClass: 'modal-mini', size: 'md', centered: true });
   }
 
-  openAddressModal(content, data) {
-    console.log(data);
+  openAddressModal(modalContentRef) {
     this.activeModal.close('done');
-    const modalRef = this.modalService.open(content, { windowClass: 'modal-mini', size: 'md', centered: true });
-    // console.log(data, this.datePipe.transform(this.selected, 'yyyy/MM/dd'));
+    if (this.userProfile.user_addresses.length > 0) {
+      this.createAddressForm();
+    } else {
+      this.createAddNewAddressForm();
+    }
+    this.modalService.open(modalContentRef, { windowClass: 'modal-mini', size: 'md', centered: true });
   }
 
-  openSummaryModal(content, data) {
+  openSummaryModal(modalContentRef) {
     this.activeModal.close('done');
-    const modalRef = this.modalService.open(content, { windowClass: 'modal-mini', size: 'md', centered: true });
+    this.modalService.open(modalContentRef, { windowClass: 'modal-mini', size: 'md', centered: true });
   }
 
   close(data) {
@@ -62,13 +67,12 @@ export class BookingModalComponent implements OnInit {
   async getUserProfile() {
     const { data, error } = await nhost.graphql.request(Query.GetUserProfile(nhost.auth.getUser().id))
     if (data) {
-      console.log([...(data.user_profiles)][0]);
       this.userProfile = [...(data.user_profiles)][0];
     }
   }
+
   updateAddress(event) {
     this.selected_address = this.userProfile.user_addresses.filter(res => res.address_name === event)[0];
-    console.log(this.selected_address);
     this.setAddressFormValue(this.selected_address);
   }
 
@@ -79,8 +83,28 @@ export class BookingModalComponent implements OnInit {
       address: [ {value: '', disabled: true}, [Validators.required, Validators.minLength(3)]],
       locality: [{value: '', disabled: true}, [Validators.required, Validators.minLength(3)]],
       city: [{value: 'Chennai', disabled: true}, [Validators.required, Validators.minLength(3)]],
-      pincode: [{value: '', disabled: true}, [Validators.required, Validators.pattern('^[1-9][0-9]{5}$')]]
     });
+  }
+  
+  createAddNewAddressForm() {
+    this.addNewAddressForm = this.formBuilder.group({
+      address_name: ['', [Validators.required, Validators.minLength(3)]],
+      address: [ '', [Validators.required, Validators.minLength(3)]],
+      locality: ['', [Validators.required, Validators.minLength(3)]],
+      city: [{value: 'Chennai', disabled: true}, [Validators.minLength(3)]],
+      is_preferred_address: [true, [Validators.required]]
+    });
+  }
+
+  async addNewAddress(modalContentRef: any, formData: any) {
+    formData.user_id = this.userProfile.user.id;
+    const { data, error } = await nhost.graphql.request(Query.AddUserAddress(formData));
+    if (data) {
+      this.selected_address = [...(data.insert_user_addresses.returning)][0];
+      console.log(this.selected_address);
+      this.activeModal.close('done');
+      this.openSummaryModal(modalContentRef);
+    }
   }
 
   setAddressFormValue(formData) {
@@ -90,19 +114,18 @@ export class BookingModalComponent implements OnInit {
     this.addressForm.controls['address'].setValue(formData.address);
     this.addressForm.controls['locality'].setValue(formData.locality);
     this.addressForm.controls['city'].setValue(formData.city);
-    this.addressForm.controls['pincode'].setValue(formData.pincode);
   }
+
   async onBookingFormSubmit() {
-    console.log(this.addressForm.getRawValue());
-    const bookingData = {
+    let bookingData = {
       user_id : nhost.auth.getUser().id,
       service_id: this.serviceDetail.sid,
       service_date: this.datePipe.transform(this.selected, 'yyyy-MM-dd'),
-      address_id: this.addressForm.getRawValue().address_id,
-      address: this.addressForm.getRawValue().address,
-      locality: this.addressForm.getRawValue().locality,
-      city: this.addressForm.getRawValue().city,
-      pincode: this.addressForm.getRawValue().pincode
+      address_id: this.selected_address.id,
+      address: this.selected_address.address,
+      locality: this.selected_address.locality,
+      city: this.selected_address.city,
+      otp: this.generateOTP()
     }
     console.log('BookingData :', bookingData);
     const { data, error } = await nhost.graphql.request(Query.ServiceBooking(bookingData));
@@ -132,5 +155,11 @@ export class BookingModalComponent implements OnInit {
         // footer: '<a href="">Why do I have this issue?</a>'
       })
     }
+  }
+
+  generateOTP() {
+    // Generate a random 4-digit number
+    const OTP = Math.floor(1000 + Math.random() * 9000);
+    return OTP;
   }
 }

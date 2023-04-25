@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ADMINROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
+import { nhost } from '../../@shared/global';
 
 @Component({
   selector: 'app-navbar',
@@ -36,5 +37,9 @@ export class NavbarComponent implements OnInit {
     }
     return 'Dashboard';
   }
-
+  adminLogout() {
+    nhost.auth.signOut().then(() => {
+      this.router.navigateByUrl('/auth/login');
+    });
+  }
 }

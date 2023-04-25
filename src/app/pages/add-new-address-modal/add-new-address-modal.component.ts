@@ -29,7 +29,7 @@ export class AddNewAddressModalComponent implements OnInit {
       address: [ '', [Validators.required, Validators.minLength(3)]],
       locality: ['', [Validators.required, Validators.minLength(3)]],
       city: [{value: 'Chennai', disabled: true}, [Validators.required, Validators.minLength(3)]],
-      pincode: ['', [Validators.required, Validators.pattern('^[1-9][0-9]{5}$')]],
+      // pincode: ['', [Validators.required, Validators.pattern('^[1-9][0-9]{5}$')]],
       is_preferred_address: [false, [Validators.required]]
     });
   }

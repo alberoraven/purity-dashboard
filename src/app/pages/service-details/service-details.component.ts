@@ -63,6 +63,7 @@ export class ServiceDetailsComponent implements OnInit {
         this.user = nhost.auth.getUser();
       }
     })
+    console.log(this.serviceDetail);
     this.userReviews = await this.getUserReviews(this.serviceDetail.sid);
     console.log(this.userReviews);
   }

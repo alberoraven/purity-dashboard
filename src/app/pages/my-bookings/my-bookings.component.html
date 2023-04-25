@@ -92,6 +92,7 @@
                             <th scope="col">Service Name</th>
                             <th scope="col">Service Date</th>
                             <th scope="col">Status</th>
+                            <th scope="col">OTP</th>
                             <th scope="col">Booking Date</th>
                             <th scope="col">Vendor Name</th>
                             <!-- <th scope="col"></th> -->
@@ -114,6 +115,9 @@
                               <span class="badge badge-dot mr-4">
                                 <i class="bg-{{getBookingStatusColor(booking.booking_status.status_id)}}"></i> {{booking.booking_status.name | titlecase}}
                               </span>
+                            </td>
+                            <td>
+                              {{booking.otp}}
                             </td>
                             <td>
                                 {{booking.booking_date | date: 'dd/MM/yyyy'}}

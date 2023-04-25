@@ -146,7 +146,9 @@
             <button mat-flat-button color="primary" (click)="bookNow()">Book Now</button>
         </div>
       </div>
-      <app-user-review-widget [userReviews]="userReviews"></app-user-review-widget>
+      <div *ngIf="userReviews?.length > 0">
+        <app-user-review-widget [userReviews]="userReviews"></app-user-review-widget>
+      </div>
     </div>
   </div>
 </div>
