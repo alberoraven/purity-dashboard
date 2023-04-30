@@ -47,9 +47,11 @@ export class BookingModalComponent implements OnInit {
 
   openAddressModal(modalContentRef) {
     this.activeModal.close('done');
-    if (this.userProfile.user_addresses.length > 0) {
-      this.createAddressForm();
+    if (this.userProfile?.user_addresses?.length > 0) {
+      console.log('createAddressForm()');
+      this.createAddressForm(this.userProfile.user_addresses[0]);
     } else {
+      console.log('createAddNewAddressForm()');
       this.createAddNewAddressForm();
     }
     this.modalService.open(modalContentRef, { windowClass: 'modal-mini', size: 'md', centered: true });
@@ -76,13 +78,14 @@ export class BookingModalComponent implements OnInit {
     this.setAddressFormValue(this.selected_address);
   }
 
-  createAddressForm() {
+  createAddressForm(addressFormData) {
+    console.log(addressFormData);
     this.addressForm = this.formBuilder.group({
-      address_id: [{value: '', disabled: true}, [Validators.required]],
-      address_name: ['', [Validators.required, Validators.minLength(3)]],
-      address: [ {value: '', disabled: true}, [Validators.required, Validators.minLength(3)]],
-      locality: [{value: '', disabled: true}, [Validators.required, Validators.minLength(3)]],
-      city: [{value: 'Chennai', disabled: true}, [Validators.required, Validators.minLength(3)]],
+      address_id: [{value: addressFormData.id, disabled: true}, [Validators.required]],
+      address_name: [addressFormData.address_name, [Validators.required, Validators.minLength(3)]],
+      address: [ {value: addressFormData.address, disabled: true}, [Validators.required, Validators.minLength(3)]],
+      locality: [{value: addressFormData.locality, disabled: true}, [Validators.required, Validators.minLength(3)]],
+      city: [{value: addressFormData.city, disabled: true}, [Validators.required, Validators.minLength(3)]],
     });
   }
   

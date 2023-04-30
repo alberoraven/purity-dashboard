@@ -16,9 +16,9 @@ import { SharedService } from 'src/app/@shared/shared.service';
 export class UserHomeComponent implements OnInit {
   public servicesList: any[];
   public focus: any;
-  myControl = new FormControl('');
-  options: string[] = [];
-  filteredOptions: Observable<string[]>;
+  public myControl = new FormControl('');
+  public options: string[] = [];
+  public filteredOptions: Observable<string[]>;
 
   constructor(
     private router: Router,
@@ -32,7 +32,7 @@ export class UserHomeComponent implements OnInit {
         const userProfileData = await this.isProfileCompleted(res.id);
         console.log('userProfileData :', userProfileData);
         if (userProfileData.length == 0) {
-          this.router.navigateByUrl('user/my-profile');
+          this.router.navigateByUrl(`user/profile?id=${nhost.auth.getUser().id}`);
           return;
         } else {
           this.getServices();

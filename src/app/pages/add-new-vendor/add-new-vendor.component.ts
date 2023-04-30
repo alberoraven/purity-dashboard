@@ -111,7 +111,7 @@ export class AddNewVendorComponent implements OnInit {
       swal.fire({
         icon: 'success',
         title: 'Success',
-        text: 'Your service has been booked successfully!',
+        text: 'Vendor added successfully!',
         // footer: '<a href="">Why do I have this issue?</a>'
       })
       .then((result) => {

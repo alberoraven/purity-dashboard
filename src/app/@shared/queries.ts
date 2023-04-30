@@ -113,8 +113,8 @@ export const CompletedServices = gql`query {
   }
 }`
 
-export const UpdateUser = (booking_id: any, vendor_id: any) => gql`  mutation assignVendor {
-  update_active_bookings_by_pk(pk_columns: {booking_id: ${booking_id}}, _set: {status: "2", vendor_id: "${vendor_id}"}) {
+export const AssignVendor = (booking_id: any, vendor_id: any) => gql`  mutation assignVendor {
+  update_active_bookings_by_pk(pk_columns: {booking_id: ${booking_id}}, _set: {status: 2, vendor_id: "${vendor_id}"}) {
     status
   }
 }`
@@ -140,7 +140,7 @@ export const GetUserProfile = (userId: any) => {
         email
         phone
         is_profile_completed
-    		user_addresses {
+    		user_addresses(where:{is_preferred_address: {_eq: true}}) {
           id
           address_name
           address
@@ -296,11 +296,18 @@ export const InsertOfferDetails = (details: any) => gql`  mutation {
   }
 }`
 
-export const UpdateVendorDetais = (user_id: any, details: any) => gql`  mutation {
-  update_vendor_profiles(where: {user_id: {_eq: "${user_id}"}}, _set: {name: "${details.name}", phone: "${details.phone}", address: "${details.address}", wallet_money: ${details.wallet_money} ,city: "${details.city}", locality: "${details.locality}"} ) {
-    returning {
-      user_id
-    }
+export const UpdateVendorDetails = (vendor_details: any) => gql`  mutation {
+  update_vendor_profiles(where: {user_id: {_eq: "${vendor_details.user_id}"}}, _set: {
+    name: "${vendor_details.name}",
+    phone: "${vendor_details.phone}",
+    email: "${vendor_details.email}",
+    address: "${vendor_details.address}",
+    locality: "${vendor_details.locality}",
+    city: "${vendor_details.city}",
+    pincode: "${vendor_details.pincode}",
+    wallet_money: ${vendor_details.wallet_money},
+  } ) {
+    affected_rows
   }
 }`
 

@@ -31,7 +31,7 @@
         </button>
       </div>
       <div class="modal-body px-3">
-        <div *ngIf="userProfile.user_addresses.length > 0">
+        <div *ngIf="userProfile?.user_addresses?.length > 0">
             <form class="example-form" [formGroup]="addressForm">
                 <mat-form-field appearance="outline">
                     <mat-label>Choose Address</mat-label>
@@ -71,7 +71,7 @@
                 </table>
             </form>
         </div>
-        <div *ngIf="userProfile.user_addresses.length == 0">
+        <div *ngIf="userProfile?.user_addresses?.length == 0">
             <form class="example-form" [formGroup]="addNewAddressForm">
                 <div class="row">
                     <div class="col-md-6">

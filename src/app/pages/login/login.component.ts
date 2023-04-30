@@ -19,9 +19,10 @@ export class LoginComponent implements OnInit {
     public elRef: ElementRef
   ) { }
 
-  ngOnInit() {
-    console.log(nhost.auth.getUser());
-    if (nhost.auth.getUser() && nhost.auth.getUser().roles.includes("admin")) {
+  async ngOnInit() {
+    console.log(nhost?.auth?.isAuthenticated());
+    console.log(nhost?.auth?.getUser()?.roles.includes("admin"));
+    if (nhost?.auth?.isAuthenticated() && await nhost?.auth?.getUser()?.roles.includes("admin")) {
       this.storeValuetoStorage(nhost.auth.getUser())
       this.router.navigateByUrl('/admin/dashboard');
     }

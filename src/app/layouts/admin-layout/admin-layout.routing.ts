@@ -22,8 +22,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'offer-details', component: OfferDetailsComponent },
     { path: 'new-bookings', component: NewBookingsComponent },
     { path: 'add-new-vendor', component: AddNewVendorComponent },
-    {
-        path: '**',
-        redirectTo: 'dashboard'
-    }
+    // {
+    //     path: '**',
+    //     redirectTo: 'dashboard'
+    // }
 ];

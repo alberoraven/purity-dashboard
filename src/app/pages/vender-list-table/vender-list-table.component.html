@@ -134,7 +134,7 @@
                   </ul>
                 </td>
                 <td>
-                  <div class="nav-item" ngbDropdown x-placement="bottom-right">
+                  <!-- <div class="nav-item" ngbDropdown x-placement="bottom-right">
                     <a class="nav-link nav-link-icon" role="button" ngbDropdownToggle>
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
@@ -142,10 +142,10 @@
                       <a class="dropdown-item" href="javascript:void(0)" (click)='openDialog(item)'>Edit</a>
                       <a class="dropdown-item" href="javascript:void(0)" (click)="deleteVendorServices(item.user_id)">Delete</a>
                     </div>
-                  </div>
-                  <!-- <button mat-icon-button (click)='openDialog(item)'><i class="fa fa-pencil"
-                      style="font-size:20px;"></i>
-                  </button> -->
+                  </div> -->
+                  <button mat-icon-button (click)='deleteVendorServices(item.user_id)'>
+                    <mat-icon>delete</mat-icon>
+                  </button>
                 </td>
               </tr>
             </tbody>

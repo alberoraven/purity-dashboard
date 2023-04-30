@@ -93,6 +93,7 @@ export class NewBookingsComponent implements OnInit {
   }
 
   openDialog(bookingData): void {
+    console.log(bookingData);
     const dialogRef = this.dialog.open(VendorAddDialogue, {
       data: bookingData,
     });
@@ -178,7 +179,7 @@ export class VendorAddDialogue {
   }
 
   async assignVendor() {
-    const { data, error } = await nhost.graphql.request(Query.UpdateUser(this.bookingId, this.emailId))
+    const { data, error } = await nhost.graphql.request(Query.AssignVendor(this.data.booking_id, this.autoSuggestedData[0].vendor_profile.user_id))
     if (data) {
       this.status = [data]
     }

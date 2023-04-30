@@ -60,12 +60,9 @@ export class VendorListTableComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      if (result.user_id) {
-        const { data, error } = await nhost.graphql.request(Query.UpdateVendorDetais(result.user_id, result))
-        if (data) {
-          // console.log(data);
-        }
-      }
+      // if (result.user_id) {
+      //   const { data, error } = await nhost.graphql.request(Query.UpdateVendorDetails(result.user_id, result))
+      // }
     });
   }
   async getVendorList() {
