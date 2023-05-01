@@ -20,8 +20,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    console.log(nhost?.auth?.isAuthenticated());
-    console.log(nhost?.auth?.getUser()?.roles.includes("admin"));
     if (nhost?.auth?.isAuthenticated() && await nhost?.auth?.getUser()?.roles.includes("admin")) {
       this.storeValuetoStorage(nhost.auth.getUser())
       this.router.navigateByUrl('/admin/dashboard');
@@ -35,7 +33,6 @@ export class LoginComponent implements OnInit {
         email: form.value.username,
         password: form.value.password
       }).then(res => {
-        console.log(res);
         if (res.error) {
           this.elRef.nativeElement.querySelector(".error").innerHTML = res.error.message + "!";
         } else {

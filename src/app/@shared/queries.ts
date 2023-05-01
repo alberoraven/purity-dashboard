@@ -34,6 +34,12 @@ export const vendorList = gql`query {
     wallet_money
     is_vendor_available
     is_profile_completed
+    vendor_services {
+      service_detail{
+        sid
+        name
+      }
+    }
   }
 }`
 export const getVendorDetails = (userId: any) => gql`query {

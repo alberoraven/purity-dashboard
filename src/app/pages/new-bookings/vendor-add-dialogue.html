@@ -1,8 +1,8 @@
-<div mat-dialog-content>
+<mat-dialog-content>
     <p>Choose a vendor</p>
     <div class="row">
         <div class="col">
-            <mat-form-field class="example-full-width" appearance="fill">
+            <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Vendor</mat-label>
                 <input type="text" aria-label="VendorList" matInput [formControl]="vendorControl"
                     [matAutocomplete]="auto">
@@ -22,7 +22,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <mat-form-field class="example-full-width" appearance="fill">
+            <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Locality</mat-label>
                 <input type="text"  aria-label="Locality" matInput [formControl]="localityControl"
                     [matAutocomplete]="auto_locality">
@@ -36,7 +36,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <mat-form-field class="example-full-width" appearance="fill">
+            <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Service Name</mat-label>
                 <input type="text"  aria-label="Service Name" matInput [formControl]="serviceControl"
                     [matAutocomplete]="auto_service">
@@ -48,8 +48,9 @@
             </mat-form-field>
         </div>
     </div>
-</div>
+</mat-dialog-content>
 <hr/>
-<div mat-dialog-actions>
+<mat-dialog-actions align="end">
+    <button mat-flat-button mat-dialog-close color="primary" >Cancel</button>
     <button mat-flat-button color="primary" (click)="assignVendor()" [disabled]="!vendorControl.getRawValue()">AssignVendor</button>
-</div>
+</mat-dialog-actions>

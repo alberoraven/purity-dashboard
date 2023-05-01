@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
 
     return new Promise((resolve) => {
       if (nhost && nhost?.auth?.getUser()?.defaultRole == 'admin') {
-        console.log(nhost?.auth?.getUser());
         resolve(true);
       } else {
         resolve(false);

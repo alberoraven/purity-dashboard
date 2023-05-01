@@ -35,9 +35,10 @@ export class BookingModalComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.localities = locations.locations;
-    this.getUserProfile();
+    this.userProfile = await this.getUserProfile();
+    this.selected_address = this.userProfile.user_addresses[0] || null;
   }
 
   openDateModal(modalContentRef) {
@@ -48,10 +49,8 @@ export class BookingModalComponent implements OnInit {
   openAddressModal(modalContentRef) {
     this.activeModal.close('done');
     if (this.userProfile?.user_addresses?.length > 0) {
-      console.log('createAddressForm()');
       this.createAddressForm(this.userProfile.user_addresses[0]);
     } else {
-      console.log('createAddNewAddressForm()');
       this.createAddNewAddressForm();
     }
     this.modalService.open(modalContentRef, { windowClass: 'modal-mini', size: 'md', centered: true });
@@ -69,17 +68,17 @@ export class BookingModalComponent implements OnInit {
   async getUserProfile() {
     const { data, error } = await nhost.graphql.request(Query.GetUserProfile(nhost.auth.getUser().id))
     if (data) {
-      this.userProfile = [...(data.user_profiles)][0];
+      return [...(data.user_profiles)][0];
     }
   }
 
   updateAddress(event) {
+    console.log('updateAddress :', event);
     this.selected_address = this.userProfile.user_addresses.filter(res => res.address_name === event)[0];
     this.setAddressFormValue(this.selected_address);
   }
 
   createAddressForm(addressFormData) {
-    console.log(addressFormData);
     this.addressForm = this.formBuilder.group({
       address_id: [{value: addressFormData.id, disabled: true}, [Validators.required]],
       address_name: [addressFormData.address_name, [Validators.required, Validators.minLength(3)]],
@@ -104,14 +103,12 @@ export class BookingModalComponent implements OnInit {
     const { data, error } = await nhost.graphql.request(Query.AddUserAddress(formData));
     if (data) {
       this.selected_address = [...(data.insert_user_addresses.returning)][0];
-      console.log(this.selected_address);
       this.activeModal.close('done');
       this.openSummaryModal(modalContentRef);
     }
   }
 
   setAddressFormValue(formData) {
-    console.log(formData);
     this.addressForm.controls['address_id'].setValue(formData.id);
     this.addressForm.controls['address_name'].setValue(formData.address_name);
     this.addressForm.controls['address'].setValue(formData.address);

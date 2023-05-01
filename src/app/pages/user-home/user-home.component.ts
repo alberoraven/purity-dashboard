@@ -27,10 +27,8 @@ export class UserHomeComponent implements OnInit {
 
   ngOnInit() {
     this.sharedService.userData.subscribe(async (res) => {
-      console.log('User :', res);
       if (res) {
         const userProfileData = await this.isProfileCompleted(res.id);
-        console.log('userProfileData :', userProfileData);
         if (userProfileData.length == 0) {
           this.router.navigateByUrl(`user/profile?id=${nhost.auth.getUser().id}`);
           return;
@@ -46,7 +44,6 @@ export class UserHomeComponent implements OnInit {
   async getServices() {
     const { data, error } = await nhost.graphql.request(Query.serviceDetailsList)
     if (data) {
-      console.log(data);
       this.servicesList = [...(data.service_details)];
       this.options = this.servicesList;
       this.filteredOptions = this.myControl.valueChanges.pipe(

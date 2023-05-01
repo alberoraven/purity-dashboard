@@ -30,7 +30,6 @@ export class UserLayoutComponent implements OnInit {
   
     this.sharedService.userData.subscribe(res => {
       this.user = res;
-      console.log(res);
     });
 
     setTimeout(() => {
@@ -54,7 +53,6 @@ export class UserLayoutComponent implements OnInit {
   openModal() {
 		const modalRef = this.modalService.open(LoginModalComponent, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
-      console.log(this.closeResult);
     })
 		// modalRef.componentInstance.name = 'World';
 	}

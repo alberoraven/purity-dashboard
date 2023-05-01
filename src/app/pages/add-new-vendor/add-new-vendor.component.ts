@@ -30,7 +30,7 @@ export class AddNewVendorComponent implements OnInit {
     this.profileForm = this.formBuilder.group({
       user_id: [{value: '', disabled: true}, [Validators.required]],
       displayName: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.minLength(3), Validators.email]],
+      email: ['', [Validators.required, Validators.minLength(3), Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.minLength(10)]],
       address: ['', [Validators.minLength(3)]],
       locality: ['', [Validators.required, Validators.minLength(3)]],

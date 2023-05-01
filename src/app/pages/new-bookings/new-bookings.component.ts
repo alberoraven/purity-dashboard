@@ -243,7 +243,6 @@ export class VendorAddDialogue {
 
   private _filterVendor(value: string): string[] {
     const filterValue = value.toLowerCase();
-    console.log(value, this.vendorList);
     return this.vendorList?.filter(res => res.vendor_profile.name.toLowerCase().includes(filterValue));
   }
 

@@ -26,9 +26,9 @@ export class VendorListTableComponent implements OnInit {
   async ngOnInit() {
     this.vendorList = await this.getVendorList();
     // this.vendorList[0].vendor_services = await this.getVendorServices(this.vendorList[0].user_id);
-    this.vendorList.forEach(async element => {
-      element.vendor_services = await this.getVendorServices(element.user_id);
-    });
+    // this.vendorList.forEach(async element => {
+    //   element.vendor_services = await this.getVendorServices(element.user_id);
+    // });
     console.log(this.vendorList);
   }
 
