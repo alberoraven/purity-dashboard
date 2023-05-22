@@ -3,6 +3,7 @@ import * as Query from '../../@shared/queries';
 import { NgForm } from '@angular/forms';
 import { nhost } from '../../@shared/global';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
 
 export interface DialogData {
   details: {};
@@ -16,11 +17,13 @@ export interface DialogData {
 export class VendorListTableComponent implements OnInit {
 
   public vendorList: any;
-  vendor = { phone: '' };
+  public vendor = { phone: '' };
+  public url: any;
 
   constructor(
     public elRef: ElementRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public http: HttpClient
   ) { }
 
   async ngOnInit() {
@@ -29,7 +32,6 @@ export class VendorListTableComponent implements OnInit {
     // this.vendorList.forEach(async element => {
     //   element.vendor_services = await this.getVendorServices(element.user_id);
     // });
-    console.log(this.vendorList);
   }
 
   async submit(form: NgForm) {

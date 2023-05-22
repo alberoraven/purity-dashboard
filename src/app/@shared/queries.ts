@@ -53,6 +53,16 @@ export const getVendorDetails = (userId: any) => gql`query {
     pincode
     wallet_money
     is_profile_completed
+    aadhar_file_id
+    pan_file_id
+    aadhar_status {
+      id
+      name
+    }
+    pan_status {
+      id
+      name
+    }
     user {
     	displayName
     	avatarUrl
@@ -312,6 +322,8 @@ export const UpdateVendorDetails = (vendor_details: any) => gql`  mutation {
     city: "${vendor_details.city}",
     pincode: "${vendor_details.pincode}",
     wallet_money: ${vendor_details.wallet_money},
+    aadhar_file_status: ${vendor_details.aadhar_file_status},
+    pan_file_status: ${vendor_details.pan_file_status}
   } ) {
     affected_rows
   }

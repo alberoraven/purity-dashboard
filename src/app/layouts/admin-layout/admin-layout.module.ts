@@ -19,7 +19,7 @@ import { MaterialExampleModule } from '../../material.module';
 import { GraphQLModule } from '../../@shared/graphql.module';
 import { IconsComponent } from '../../pages/icons/icons.component';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
-import { VendorProfileComponent } from '../../pages/vendor-profile/vendor-profile.component';
+import { VendorProfileComponent, DocumentDialogue } from '../../pages/vendor-profile/vendor-profile.component';
 import { CompletedServices } from '../../pages/completed-services/completed-services.component';
 import { NewBookingsComponent, VendorAddDialogue } from '../../pages/new-bookings/new-bookings.component';
 import { VendorListDialogue, VendorListTableComponent } from '../../pages/vender-list-table/vender-list-table.component';
@@ -27,6 +27,7 @@ import { ServiceDetailDialogue, ServiceDetailsComponent } from '../../pages/serv
 import { OfferDetailDialogue, OfferDetailsComponent } from '../../pages/offerDetails/offer-details.component';
 import { AddNewVendorComponent } from '../../pages/add-new-vendor/add-new-vendor.component';
 
+import { DocumentStatusPipe } from '../../@shared/document-status.pipe';
 
 @NgModule({
   imports: [
@@ -55,12 +56,14 @@ import { AddNewVendorComponent } from '../../pages/add-new-vendor/add-new-vendor
     ServiceDetailsComponent,
     ServiceDetailDialogue,
     VendorListDialogue,
+    DocumentDialogue,
     OfferDetailsComponent,
     OfferDetailDialogue,
     IconsComponent,
     VendorAddDialogue,
     NewBookingsComponent,
     AddNewVendorComponent,
+    DocumentStatusPipe
   ], 
   exports: [
     MatFormFieldModule

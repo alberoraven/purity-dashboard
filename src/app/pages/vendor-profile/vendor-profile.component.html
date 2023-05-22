@@ -134,7 +134,7 @@
               </div>
             </div>
             <hr class="my-4">
-            <!-- Address -->
+            <!-- Service Information -->
             <h6 class="heading-small text-muted mb-4">Service information</h6>
             <div class="pl-lg-4" *ngIf="servicesList">
               <div class="row">
@@ -156,6 +156,45 @@
                       </div>
                   </section>
               </div>
+              </div>
+            </div>
+            <hr class="my-4">
+            <!-- Service Information -->
+            <h6 class="heading-small text-muted mb-4">Documents</h6>
+            <div class="row">
+              <div class="col-lg-6" *ngIf="vendorProfileData">
+                <mat-form-field appearance="outline">
+                  <mat-label>Aadhar Status</mat-label>
+                  <mat-select formControlName="aadhar_file_status">
+                    <mat-option *ngFor="let status of documentStatus" [value]="status.id">
+                      {{status.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </div>
+              <div class="col-lg-6" *ngIf="vendorProfileData">
+                <mat-form-field appearance="outline">
+                  <mat-label>PAN Status</mat-label>
+                  <mat-select formControlName="pan_file_status">
+                    <mat-option *ngFor="let status of documentStatus" [value]="status.id">
+                      {{status.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6" *ngIf="aadharFileUrl">
+                <h5 class="text-muted">Aadhar Proof</h5>
+                <img src="{{aadharFileUrl}}" alt="Aadhar" class="documents" (click)="openDialog(aadharFileUrl)">
+              </div>
+              <div class="col-lg-6" *ngIf="panFileUrl">
+                <h5 class="text-muted">PAN Proof</h5>
+                <img src="{{panFileUrl}}" alt="Pan" class="documents" (click)="openDialog(panFileUrl)">
+              </div>
+              <div class="col-lg-12">
+                <h5 class="text-muted" *ngIf="!aadharFileUrl && !panFileUrl">No Documents found.</h5>
               </div>
             </div>
           </form>
