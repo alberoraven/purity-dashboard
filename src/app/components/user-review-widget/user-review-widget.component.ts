@@ -13,4 +13,8 @@ export class UserReviewWidgetComponent implements OnInit {
     console.log('review :', this.userReviews);
   }
 
+  getRoundOffValue(decimalValue: any) {
+    return Math.ceil(decimalValue);
+  }
+
 }

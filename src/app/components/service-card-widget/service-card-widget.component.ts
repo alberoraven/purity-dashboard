@@ -13,4 +13,8 @@ export class ServiceCardWidgetComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getRoundOffValue(decimalValue: any) {
+    return Math.ceil(decimalValue);
+  }
+
 }
