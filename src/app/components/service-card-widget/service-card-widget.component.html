@@ -15,7 +15,7 @@
               <div *ngFor="let item of [].constructor(getRoundOffValue(service.ratings))">
                   <span class="text-warning mr-1"><i class="fa fa-star"></i></span>
               </div>
-              <span class="text-nowrap text-muted text-sm">{{ service.ratings | number }} ({{ service.reviews_count }} Reviews)</span>
+              <span class="text-nowrap text-muted text-sm">{{ getRoundOffValue(service.ratings) }} ({{ service.reviews_count }} Reviews)</span>
             </div>
         </div>
       </div>

@@ -16,7 +16,7 @@
                     <div class=" media-comment-text">
                         <span class="h5 mt-0">{{review.user_profile.name}}</span> | <span class="text-muted heading-small">{{review.date | date: 'dd-MM-yyyy'}}</span>
                         <div class="ratings">
-                            <div *ngFor="let item of [].constructor(getRoundOffValue(service.ratings))">
+                            <div *ngFor="let item of [].constructor(getRoundOffValue(review.rating))">
                                 <span class="text-warning mr-1"><i class="fa fa-star"></i></span>
                             </div>
                         </div>

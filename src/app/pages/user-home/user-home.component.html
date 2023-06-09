@@ -58,7 +58,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 pb-4" *ngFor="let service of servicesList ; let sindex = index" (click)="getServiceDetails(service)">
+                        <div class="user-home-cards col-xl-3 col-lg-4 col-md-4 pb-4" *ngFor="let service of servicesList ; let sindex = index" (click)="getServiceDetails(service)">
                             <app-service-card-widget [service]="service"></app-service-card-widget>
                           </div>
                     </div>

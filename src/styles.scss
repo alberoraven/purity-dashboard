@@ -55,3 +55,15 @@ h3 {
     border-color: #2dce89 !important;
     box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08) !important;
 }
+.user-home-cards {
+  app-service-card-widget {
+    .card {
+        transition: all 0.15s ease-in-out;
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.025);
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+    }
+  }
+}
