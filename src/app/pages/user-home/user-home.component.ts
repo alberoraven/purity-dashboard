@@ -45,6 +45,7 @@ export class UserHomeComponent implements OnInit {
     const { data, error } = await nhost.graphql.request(Query.serviceDetailsList)
     if (data) {
       this.servicesList = [...(data.service_details)];
+      console.log('servicesList :', this.servicesList);
       this.options = this.servicesList;
       this.filteredOptions = this.myControl.valueChanges.pipe(
         startWith(''),
@@ -65,5 +66,12 @@ export class UserHomeComponent implements OnInit {
   async isProfileCompleted(id) {
     const { data, error } = await nhost.graphql.request(Query.IsUserProfileCompleted(id));
     return [...(data.user_profiles)];
+  }
+
+  getDocumentUrl(id: any) {
+    const url = nhost.storage.getPublicUrl({
+      fileId: `${id}`
+    })
+    return url;
   }
 }

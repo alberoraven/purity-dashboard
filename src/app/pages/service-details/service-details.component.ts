@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { nhost } from '../../@shared/global';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { LoginModalComponent } from '../../pages/login-modal/login-modal.component';
 import { getVendorDetails, GetUserProfile, GetServiceReview } from "../../@shared/queries";
 import { BookingModalComponent } from '../booking-modal/booking-modal.component';
+import { LoginModalComponent } from '../../pages/login-modal/login-modal.component';
 
 @Component({
   selector: 'app-service-details',

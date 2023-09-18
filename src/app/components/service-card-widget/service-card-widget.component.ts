@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { nhost } from '../../@shared/global';
 
 @Component({
   selector: 'app-service-card-widget',
@@ -15,6 +16,13 @@ export class ServiceCardWidgetComponent implements OnInit {
 
   getRoundOffValue(decimalValue: any) {
     return Math.ceil(decimalValue);
+  }
+
+  getDocumentUrl(id: any) {
+    const url = nhost.storage.getPublicUrl({
+      fileId: `${id}`
+    })
+    return url;
   }
 
 }

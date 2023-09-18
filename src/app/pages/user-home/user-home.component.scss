@@ -14,3 +14,11 @@
 mat-form-field {
     width: 100%;
 }
+mat-option {
+    span {
+        padding-left: 10px;
+    }
+    img {
+        width: 55px;
+    }
+}

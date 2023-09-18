@@ -8,7 +8,7 @@
     <div class="row" style="width: 100%;">
       <div class="col-12 text-center">
         <h1 class="display-2 text-white">Purity Smart Services</h1>
-        <h3 class="text-white">Professional Home Services – your one-stop solution for all your home maintenance and repair needs!</h3>
+        <h3 class="text-white">Your one-stop solution for all your home maintenance and repair needs!</h3>
         <!-- <a href="#!" class="btn btn-info">Edit profile</a> -->
       </div>
     </div>
@@ -21,13 +21,22 @@
                     <div class="card-header bg-transparent">
                       <div class="row align-items-center">
                         <div class="col">
-                          <h6 class="text-uppercase text-muted ls-1 mb-1">Search any service</h6>
+                          <!-- <h6 class="text-uppercase text-muted ls-1 mb-1">Search any service</h6> -->
                           <h2 class="mb-0">What service do you need?</h2>
                         </div>
                       </div>
                     </div>
                     <div class="card-body">
-                        <form class="navbar-search navbar-search-light form-inline mr-3 d-md-flex ml-lg-auto">
+                      <mat-form-field>
+                        <mat-label>Select a service</mat-label>
+                        <mat-select>
+                          <mat-option *ngFor="let service of servicesList" (click)="getServiceDetails(service)">
+                            <img src="{{getDocumentUrl(service.image_id)}}" alt="{{service.name}}"><span>{{service.name}}</span>
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      
+                        <!-- <form class="navbar-search navbar-search-light form-inline mr-3 d-md-flex ml-lg-auto">
                             <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Search</mat-label>
                                 <mat-icon matPrefix>search</mat-icon>
@@ -41,7 +50,7 @@
                                   </mat-option>
                                 </mat-autocomplete>
                               </mat-form-field>
-                          </form>
+                          </form> -->
                     </div>
                 </div>
             </div>

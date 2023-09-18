@@ -2,7 +2,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <img src="assets/img/services/thumbnails/{{service.sid}}_{{service.sid}}.jpg" alt="{{service.name}}">
+          <img src="{{getDocumentUrl(service.image_id)}}" alt="{{service.name}}">
         </div>
         <div class="col pt-3">
           <span class="h2 font-weight-bold mb-0" title="{{service.name}}">{{service.name}}</span>
@@ -11,12 +11,14 @@
               <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
               <span class="text-nowrap">Since last month</span>
           </p> -->
-          <div class="rating pt-3">
+
+          <!-- Uncomment here to get rating details -->
+          <!-- <div class="rating pt-3">
               <div *ngFor="let item of [].constructor(getRoundOffValue(service.ratings))">
                   <span class="text-warning mr-1"><i class="fa fa-star"></i></span>
               </div>
               <span class="text-nowrap text-muted text-sm">{{ getRoundOffValue(service.ratings) }} ({{ service.reviews_count }} Reviews)</span>
-            </div>
+            </div> -->
         </div>
       </div>
     </div>

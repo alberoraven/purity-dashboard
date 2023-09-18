@@ -2,7 +2,7 @@
   <mat-toolbar class="user-layout-header">
     <mat-toolbar-row>
       <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/dashboard']">
-        <img src="assets/img/brand/logo-transparent.png" />
+        <img src="assets/img/brand/new-logo.png" />
         <!-- <span>Purity Smart Services</span> -->
       </a>
       <span class="example-spacer"></span>
@@ -54,6 +54,10 @@
             <a routerLinkActive="active" class="dropdown-item" (click)="openModal()">
               <i class="ni ni-single-02"></i>
               <span>Login</span>
+            </a>
+            <a routerLinkActive="active" class="dropdown-item" (click)="openBookaServiceModal()">
+              <i class="ni ni-archive-2"></i>
+              <span>Book a Service</span>
             </a>
             <ng-template #classic1 let-c="close" let-d="dismiss">
               <div class="modal-content">
@@ -107,6 +111,6 @@
     <router-outlet></router-outlet>
   </div>
   <mat-toolbar class="user-layout-footer">
-    <span class="text-muted text-right"><a href="https://www.alberoraven.com">Alberoraven</a> ©2023, All Rights Reserved.</span>
+    <span class="text-muted text-right"><a>Purity Smart Services</a> ©2023, All Rights Reserved.</span>
   </mat-toolbar>
 </div>

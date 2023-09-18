@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -59,6 +60,7 @@ import { SharedService } from './@shared/shared.service';
   ],
   bootstrap: [AppComponent],
   providers: [
+    DatePipe,
     SharedService
   ]
 })

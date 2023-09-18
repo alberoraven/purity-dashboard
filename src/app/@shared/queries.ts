@@ -194,6 +194,7 @@ export const GetVendorServices = (vendorId: any) => {
 
 export const serviceDetailsList = `query {
   service_details(order_by: {sid: asc}) {
+    image_id
     description
     duration
     name

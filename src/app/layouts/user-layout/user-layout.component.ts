@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { nhost } from '../../@shared/global';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModalComponent } from '../../pages/login-modal/login-modal.component';
+import { BookAServiceModalComponent } from '../../pages/book-a-service-modal/book-a-service-modal.component';
 import { SharedService } from 'src/app/@shared/shared.service';
 @Component({
   selector: 'app-user-layout',
@@ -56,4 +57,10 @@ export class UserLayoutComponent implements OnInit {
     })
 		// modalRef.componentInstance.name = 'World';
 	}
+
+  openBookaServiceModal() {
+    const modalRef = this.modalService.open(BookAServiceModalComponent, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    })
+  }
 }
