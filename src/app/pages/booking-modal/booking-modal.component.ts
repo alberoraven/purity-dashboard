@@ -47,18 +47,18 @@ export class BookingModalComponent implements OnInit {
   }
 
   openAddressModal(modalContentRef) {
-    this.activeModal.close('done');
     if (this.userProfile?.user_addresses?.length > 0) {
       this.createAddressForm(this.userProfile.user_addresses[0]);
     } else {
       this.createAddNewAddressForm();
     }
     this.modalService.open(modalContentRef, { windowClass: 'modal-mini', size: 'md', centered: true });
+    this.activeModal.close();
   }
 
   openSummaryModal(modalContentRef) {
-    this.activeModal.close('done');
     this.modalService.open(modalContentRef, { windowClass: 'modal-mini', size: 'md', centered: true });
+    this.activeModal.close();
   }
 
   close(data) {
@@ -131,6 +131,7 @@ export class BookingModalComponent implements OnInit {
     const { data, error } = await nhost.graphql.request(Query.ServiceBooking(bookingData));
     this.modalService.dismissAll();
     this.showNotification(data ? 'success' : 'error');
+    this.activeModal.close();
   }
 
   showNotification(type: string) {

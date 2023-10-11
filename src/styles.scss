@@ -67,3 +67,27 @@ h3 {
     }
   }
 }
+
+.mat-typography h5 {
+  font-size: 0.85rem;
+  color: #32325d !important;
+}
+.form-group {
+  margin-bottom: 0.5rem !important;
+}
+.mat-typography h6 {
+  margin: 0 0 6px !important;
+}
+::ng-deep .mat-select-panel {
+  background: #ffffff !important;
+}
+
+.bg-gradient-danger.mask {
+  background: linear-gradient(to left bottom, #dd2600, #d10043, #aa006b, #6d1982, #012d81) !important;
+}
+.modal-header.bg-white, .modal-footer.bg-white, div.card-header, div.card-footer {
+  background-color: #f8f9fe !important;
+}
+.modal-body, .card-body {
+  background-color: #ffffff !important;
+}

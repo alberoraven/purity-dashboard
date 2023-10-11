@@ -32,7 +32,7 @@
                 </mat-form-field>
                 <mat-form-field class="example-form-field" appearance="outline" *ngIf="hasRequestedOTP">
                 <mat-label>OTP</mat-label>
-                <mat-icon matPrefix>password</mat-icon>
+                <!-- <mat-icon matPrefix>password</mat-icon> -->
                 <input matInput type="password" [(ngModel)]="otp" maxlength="6" minlength="6" formControlName="otp">
                 <button *ngIf="otp" matSuffix mat-icon-button aria-label="Clear" (click)="otp=''">
                     <mat-icon>close</mat-icon>

@@ -203,6 +203,10 @@ export const serviceDetailsList = `query {
     sid
     reviews_count
     ratings
+    service_category {
+      id
+      name
+    }
   }
 }`
 

@@ -71,5 +71,6 @@ export class BookAServiceModalComponent implements OnInit {
     } else {
       this.openLoginModal();
     }
+    this.activeModal.close();
   }
 }

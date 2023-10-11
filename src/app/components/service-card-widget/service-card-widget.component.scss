@@ -1,6 +1,7 @@
 .card {
     &-body {
         padding: 0.75rem 0.75rem !important;
+        background-color: #f8f9fe !important;
         // cursor: pointer;
         .row {
             flex-direction: column;
@@ -20,6 +21,11 @@
         .rating {
             display: flex;
             align-items: center;
+        }
+        .price {
+            color: #DD2600;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
     }
 }

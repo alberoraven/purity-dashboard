@@ -25,8 +25,8 @@ export class AddNewAddressModalComponent implements OnInit {
 
   createAddNewAddressForm() {
     this.addNewAddressForm = this.formBuilder.group({
-      address_name: ['', [Validators.required, Validators.minLength(3)]],
-      address: [ '', [Validators.required, Validators.minLength(3)]],
+      address_name: ['Home', [Validators.required, Validators.minLength(3)]],
+      address: [ '', [Validators.minLength(3)]],
       locality: ['', [Validators.required, Validators.minLength(3)]],
       city: [{value: 'Chennai', disabled: true}, [Validators.required, Validators.minLength(3)]],
       // pincode: ['', [Validators.required, Validators.pattern('^[1-9][0-9]{5}$')]],
@@ -40,7 +40,8 @@ export class AddNewAddressModalComponent implements OnInit {
 
   onAddNewAddressFormSubmit() {
     console.log(this.addNewAddressForm.getRawValue());
-    this.activeModal.close(this.addNewAddressForm.getRawValue());
+    // this.activeModal.close(this.addNewAddressForm.getRawValue());
+    this.activeModal.close();
   }
 
 }

@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 export class SharedService {
     
     public userData = new BehaviorSubject<any>(null);
-
+    public isChecked = true;
     constructor() { }
     
 }

@@ -19,7 +19,7 @@ export class UserHomeComponent implements OnInit {
   public myControl = new FormControl('');
   public options: string[] = [];
   public filteredOptions: Observable<string[]>;
-
+  public serviceCategories: any;
   constructor(
     private router: Router,
     private sharedService: SharedService
@@ -51,9 +51,30 @@ export class UserHomeComponent implements OnInit {
         startWith(''),
         map((value: any) => value.length >= 2 ? this._filter(value || '') : []),
       );
+      this.getServiceCategories(this.servicesList);
     }
   }
+  getServiceCategories(services: any) {
+    console.log(services);
+    // Create an object to store unique service categories
+    const uniqueCategories = {};
 
+    // Iterate through the data to collect unique service categories
+    services.forEach((item) => {
+      const { id, name } = item.service_category;
+      if (!uniqueCategories[id]) {
+        uniqueCategories[id] = { id, name };
+      }
+    });
+
+    // Convert the unique categories object into an array
+    console.log('unique category :', Object.values(uniqueCategories))
+    this.serviceCategories = Object.values(uniqueCategories); 
+  }
+
+  getServicesByCategory(category_id: number, services: any) {
+    return services.filter(res => res.service_category.id === category_id);
+  }
   getServiceDetails(service) {
     this.router.navigate([`user/service-details/${service.sid}`], {state: service});
   }
