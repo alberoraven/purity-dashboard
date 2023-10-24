@@ -91,3 +91,17 @@ h3 {
 .modal-body, .card-body {
   background-color: #ffffff !important;
 }
+
+app-service-card-widget {
+  .card-body {
+    background-color: #f8f9fe !important;
+  }
+}
+
+app-service-details {
+  app-service-card-widget {
+    .card-body {
+      background-color: #ffffff !important;
+    }
+  }
+}

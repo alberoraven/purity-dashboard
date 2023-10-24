@@ -6,9 +6,10 @@
         <!-- <span>Purity Smart Services</span> -->
       </a>
       <span class="example-spacer"></span>
-      <!-- <button mat-raised-button mat-icon-button color="primary" aria-label="Example icon-button with menu icon">
-        <mat-icon>person</mat-icon>
-      </button> -->
+      <button mat-raised-button color="primary" (click)="openBookaServiceModal()" class="book_a_service">
+        <i class="ni ni-archive-2"></i>
+        <span>Book a Service</span>
+      </button>
        <!-- User -->
     <ul class="navbar-nav align-items-center d-md-flex">
       <li class="nav-item" ngbDropdown placement="bottom-right">
@@ -21,11 +22,13 @@
               <span class="mb-0 text-sm  font-weight-bold" [innerHTML]=userName></span>
             </div> -->
           <button mat-raised-button mat-icon-button color="primary" aria-label="Example icon-button with menu icon">
-        <mat-icon>person</mat-icon>
-      </button>
-
+            <mat-icon>person</mat-icon>
+          </button>
           </div>
         </a>
+
+
+
         <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
           <div class=" dropdown-header noti-title">
             <h6 class="text-overflow m-0">Welcome {{nhost.auth.getUser()?.displayName}}!</h6>
@@ -58,10 +61,6 @@
             <a routerLinkActive="active" class="dropdown-item" (click)="openModal()">
               <i class="ni ni-single-02"></i>
               <span>Login</span>
-            </a>
-            <a routerLinkActive="active" class="dropdown-item" (click)="openBookaServiceModal()">
-              <i class="ni ni-archive-2"></i>
-              <span>Book a Service</span>
             </a>
             <ng-template #classic1 let-c="close" let-d="dismiss">
               <div class="modal-content">
