@@ -83,7 +83,8 @@ h3 {
 }
 
 .bg-gradient-danger.mask {
-  background: linear-gradient(to left bottom, #dd2600, #d10043, #aa006b, #6d1982, #012d81) !important;
+  // background: linear-gradient(to left bottom, #dd2600, #d10043, #aa006b, #6d1982, #012d81) !important;
+  background: linear-gradient(87deg,#ff5252 0,#f56036 100%)!important;
 }
 .modal-header.bg-white, .modal-footer.bg-white, div.card-header, div.card-footer {
   background-color: #f8f9fe !important;

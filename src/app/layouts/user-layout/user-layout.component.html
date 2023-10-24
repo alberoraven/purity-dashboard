@@ -7,8 +7,8 @@
       </a>
       <span class="example-spacer"></span>
       <button mat-raised-button color="primary" (click)="openBookaServiceModal()" class="book_a_service">
-        <i class="ni ni-archive-2"></i>
-        <span>Book a Service</span>
+        <i class="ni ni-archive-2"></i> &nbsp;
+        <span>Book now</span>
       </button>
        <!-- User -->
     <ul class="navbar-nav align-items-center d-md-flex">
@@ -39,10 +39,10 @@
               <i class="ni ni-istanbul"></i>
               <span>Home</span>
             </a>
-            <a routerLinkActive="active" class="dropdown-item" (click)="openBookaServiceModal()">
+            <!-- <a routerLinkActive="active" class="dropdown-item" (click)="openBookaServiceModal()">
               <i class="ni ni-archive-2"></i>
               <span>Book a Service</span>
-            </a>
+            </a> -->
             <a routerLinkActive="active" [routerLink]="['/user/profile']" [queryParams]="{id: user?.id}" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
