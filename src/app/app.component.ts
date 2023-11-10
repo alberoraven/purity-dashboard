@@ -8,6 +8,5 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'purity-smart-services';
   ngOnInit(): void {
-      // console.log('Latest Changes');
   }
 }

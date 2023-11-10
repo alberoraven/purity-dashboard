@@ -55,10 +55,8 @@ export class AddNewVendorComponent implements OnInit {
 
   async createVendor() {
     const vendorData = this.profileForm.getRawValue();
-    console.log(vendorData);
     const { data, error } = await nhost.graphql.request(Query.InsertNewVendor(vendorData))
     if (data) {
-      console.log(data);
       const vendorObj = {
         user_id: data.insertUser.id,
         name : vendorData.displayName,
@@ -73,7 +71,6 @@ export class AddNewVendorComponent implements OnInit {
       };
       await this.addNewVendorProfile(vendorObj);
       const services = this.servicesList.filter(res => res.checked === true);
-      console.log(services);
       for await (const service of services) {
         await this.addNewVendorService({service_id : service.sid, vendor_id: data.insertUser.id})
       }
@@ -91,7 +88,7 @@ export class AddNewVendorComponent implements OnInit {
   async addNewVendorService(serviceData) {
     const { data, error } = await nhost.graphql.request(Query.InsertVendorService(serviceData))
     if (data) {
-      console.log(data);
+      // console.log(data);
     }
   }
 

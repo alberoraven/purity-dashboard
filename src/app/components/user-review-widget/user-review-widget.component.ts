@@ -10,7 +10,7 @@ export class UserReviewWidgetComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('review :', this.userReviews);
+    // console.log('review :', this.userReviews);
   }
 
   getRoundOffValue(decimalValue: any) {

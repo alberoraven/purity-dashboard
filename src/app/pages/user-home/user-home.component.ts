@@ -45,7 +45,6 @@ export class UserHomeComponent implements OnInit {
     const { data, error } = await nhost.graphql.request(Query.serviceDetailsList)
     if (data) {
       this.servicesList = [...(data.service_details)];
-      console.log('servicesList :', this.servicesList);
       this.options = this.servicesList;
       this.filteredOptions = this.myControl.valueChanges.pipe(
         startWith(''),
@@ -55,7 +54,6 @@ export class UserHomeComponent implements OnInit {
     }
   }
   getServiceCategories(services: any) {
-    console.log(services);
     // Create an object to store unique service categories
     const uniqueCategories = {};
 
@@ -68,7 +66,7 @@ export class UserHomeComponent implements OnInit {
     });
 
     // Convert the unique categories object into an array
-    console.log('unique category :', Object.values(uniqueCategories))
+    // console.log('unique category :', Object.values(uniqueCategories))
     this.serviceCategories = Object.values(uniqueCategories); 
   }
 

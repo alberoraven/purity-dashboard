@@ -72,7 +72,6 @@ export class ServiceDetailDialogue {
 
   ngOnInit() {
     this.serviceData = this.data.details;
-    console.log(this.serviceData);
   }
 
   async onClick() {

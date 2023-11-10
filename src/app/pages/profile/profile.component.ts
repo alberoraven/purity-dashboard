@@ -62,7 +62,6 @@ export class ProfileComponent implements OnInit {
   }
 
   setProfileFormValue(formData) {
-    console.log(formData);
     const addressObj = formData.user_addresses.filter(res => res.is_preferred_address === true)[0];
     this.profileForm.controls['name'].setValue(formData.name);
     this.profileForm.controls['email'].setValue(formData.email);
@@ -87,15 +86,18 @@ export class ProfileComponent implements OnInit {
   
   openAddNewAddressModal() {
     const modalRef = this.modalService.open(AddNewAddressModalComponent, { windowClass: 'modal-mini', size: 'md', centered: true });
-    modalRef.result.then(async (result) => {
-      const user_id = nhost.auth.getUser().id;
-      result.user_id = user_id;
-      console.log(result);
-      await nhost.graphql.request(Query.AddUserAddress(result));
-      this.userProfile = await this.getUserProfile(user_id);
-      if (this.userProfile) {
-        this.setProfileFormValue(this.userProfile);
-      };
+    modalRef.result.then(async (result: any) => {
+      if (result !== 'Cross click') {
+        console.log('result :', result);
+        console.log(nhost.auth.getUser());
+        const user_id = nhost.auth.getUser().id;
+        result.user_id = user_id;
+        await nhost.graphql.request(Query.AddUserAddress(result));
+        this.userProfile = await this.getUserProfile(user_id);
+        if (this.userProfile) {
+          this.setProfileFormValue(this.userProfile);
+        };
+      }
     });
     // modalRef.componentInstance.serviceDetail = this.serviceDetail;
   }
@@ -120,7 +122,6 @@ export class ProfileComponent implements OnInit {
         email: formData.email
       }
 
-      console.log(addressObj);
       await nhost.graphql.request(Query.UpdateUserProfile(userObj));
       await nhost.graphql.request(Query.UpdateUserAddress(addressObj));
 

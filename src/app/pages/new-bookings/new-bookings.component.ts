@@ -93,13 +93,12 @@ export class NewBookingsComponent implements OnInit {
   }
 
   openDialog(bookingData): void {
-    console.log(bookingData);
     const dialogRef = this.dialog.open(VendorAddDialogue, {
       data: bookingData,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
+      // console.log('The dialog was closed', result);
       this.ngOnInit();
     });
   }
@@ -174,7 +173,6 @@ export class VendorAddDialogue {
   }
 
   getServiceId(id) {
-    console.log(id);
     this.selectedServiceId = id;
   }
 

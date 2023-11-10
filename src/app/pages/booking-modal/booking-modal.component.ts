@@ -73,7 +73,7 @@ export class BookingModalComponent implements OnInit {
   }
 
   updateAddress(event) {
-    console.log('updateAddress :', event);
+    // console.log('updateAddress :', event);
     this.selected_address = this.userProfile.user_addresses.filter(res => res.address_name === event)[0];
     this.setAddressFormValue(this.selected_address);
   }
@@ -127,7 +127,6 @@ export class BookingModalComponent implements OnInit {
       city: this.selected_address.city,
       otp: this.generateOTP()
     }
-    console.log('BookingData :', bookingData);
     const { data, error } = await nhost.graphql.request(Query.ServiceBooking(bookingData));
     this.modalService.dismissAll();
     this.showNotification(data ? 'success' : 'error');

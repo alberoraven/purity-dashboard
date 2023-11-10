@@ -16,7 +16,6 @@ export class MyBookingsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.bookingsList = await this.getBookingsList(nhost.auth.getUser().id);
-    console.log(this.bookingsList);
     this.activeBookings = this.bookingsList.filter(res => res.booking_status.status_id < 5);
     this.completedBookings = this.bookingsList.filter(res => res.booking_status.status_id == 5);
   }

@@ -45,11 +45,9 @@ export class LoginModalComponent implements OnInit {
     this.showInvalidOtpError = false;
     this.showLoader = true;
     nhost.auth.signIn({ phoneNumber: `+91${this.phone}`, otp: `${this.otp}` }).then(res => {
-      console.log(res);
       sessionStorage.setItem('user', JSON.stringify(res.session.user));
       this.sharedService.userData.next(res.session.user);
       this.isProfileCompleted(res.session.user.id).then(userData => {
-        console.log(userData);
         this.activeModal.close('Successful');
         if (userData.user_profiles.length == 0) {
           this.router.navigateByUrl('user/my-profile');

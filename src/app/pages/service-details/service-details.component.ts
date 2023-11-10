@@ -63,9 +63,7 @@ export class ServiceDetailsComponent implements OnInit {
         this.user = nhost.auth.getUser();
       }
     })
-    console.log(this.serviceDetail);
     this.userReviews = await this.getUserReviews(this.serviceDetail.sid);
-    console.log(this.userReviews);
   }
   formatJSON(data) {
     let formattedData;
@@ -89,14 +87,14 @@ export class ServiceDetailsComponent implements OnInit {
 
   openLoginModal() {
 		const modalRef = this.modalService.open(LoginModalComponent, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
-      console.log(`Closed with: ${result}`);
+      // console.log(`Closed with: ${result}`);
     })
   }
 
   openBookingModal() {
 		const modalRef = this.modalService.open(BookingModalComponent, { windowClass: 'modal-mini', size: 'md', centered: true });
     modalRef.result.then((result) => {
-      console.log(`Closed with: ${result}`);
+      // console.log(`Closed with: ${result}`);
     });
     modalRef.componentInstance.serviceDetail = this.serviceDetail;
   }

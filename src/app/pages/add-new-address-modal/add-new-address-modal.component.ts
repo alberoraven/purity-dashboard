@@ -39,7 +39,7 @@ export class AddNewAddressModalComponent implements OnInit {
   }
 
   onAddNewAddressFormSubmit() {
-    console.log(this.addNewAddressForm.getRawValue());
+    // console.log(this.addNewAddressForm.getRawValue());
     // this.activeModal.close(this.addNewAddressForm.getRawValue());
     this.activeModal.close();
   }
