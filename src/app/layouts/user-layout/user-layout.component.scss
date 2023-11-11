@@ -6,6 +6,20 @@
         z-index: 2;
         background-color: white !important;
     }
+    .user-layout-header {        
+        ul.navbar-nav {
+            flex-direction: row;
+            li:first-child {
+                margin-right: 5px;
+            }
+            .contact-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+            }
+        }
+    }
     .user-layout-container {
         max-width: 1224px;
         margin: 0 auto auto;
